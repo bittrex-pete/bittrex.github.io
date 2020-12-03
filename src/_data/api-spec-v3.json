@@ -57,6 +57,120 @@
         "x-btx-authenticated": true
       }
     },
+    "/account/permissions/markets": {
+      "get": {
+        "tags": [
+          "Account"
+        ],
+        "description": "Get trading permissions",
+        "operationId": "Account_GetAccountMarketPolicy",
+        "consumes": [
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/MarketPolicy"
+              }
+            }
+          }
+        },
+        "x-btx-authenticated": true
+      }
+    },
+    "/account/permissions/markets/{marketSymbol}": {
+      "get": {
+        "tags": [
+          "Account"
+        ],
+        "description": "Get trading permissions for a single market",
+        "operationId": "Account_GetAccountMarketPolicy",
+        "consumes": [
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "marketSymbol",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/MarketPolicy"
+            }
+          }
+        },
+        "x-btx-authenticated": true
+      }
+    },
+    "/account/permissions/currencies": {
+      "get": {
+        "tags": [
+          "Account"
+        ],
+        "description": "Get currency permissions",
+        "operationId": "Account_GetAccountCurrencyPolicy",
+        "consumes": [
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/CurrencyPolicy"
+              }
+            }
+          }
+        },
+        "x-btx-authenticated": true
+      }
+    },
+    "/account/permissions/currencies/{currencySymbol}": {
+      "get": {
+        "tags": [
+          "Account"
+        ],
+        "description": "Get currency permissions for a single currency",
+        "operationId": "Account_GetAccountCurrencyPolicy",
+        "consumes": [
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "currencySymbol",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/CurrencyPolicy"
+            }
+          }
+        },
+        "x-btx-authenticated": true
+      }
+    },
     "/addresses": {
       "get": {
         "tags": [
@@ -218,6 +332,47 @@
             "description": "OK",
             "schema": {
               "$ref": "#/definitions/Balance"
+            }
+          }
+        },
+        "x-btx-authenticated": true
+      }
+    },
+    "/batch": {
+      "post": {
+        "tags": [
+          "Batch"
+        ],
+        "description": "Create a new batch request. Currently batch requests are limited to placing and cancelling orders. The request model corresponds to the equivalent individual operations. Batch operations are executed sequentially in the order they are listed in the request. The response will return one result for each operation in the request in the same order. The status and response payload are the same as the responses would be if individual API requests were made for each operation.",
+        "operationId": "Batch_Create",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "batchOperations",
+            "in": "body",
+            "description": "List of operations in the batch",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/BatchOperation"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/BatchResponse"
+              }
             }
           }
         },
@@ -721,6 +876,128 @@
         "x-btx-authenticated": true
       }
     },
+    "/executions": {
+      "get": {
+        "tags": [
+          "Executions"
+        ],
+        "description": "List historical executions for account.  \r\nPagination and the sort order of the results are in inverse order of the Executed field.",
+        "operationId": "Executions_ListUserHistoricalExecutions",
+        "consumes": [
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "marketSymbol",
+            "in": "query",
+            "description": "filter by market (optional)",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "nextPageToken",
+            "in": "query",
+            "description": "The unique identifier of the item that the resulting query result should start after, in the sort order of the given endpoint.\r\nUsed for traversing a paginated set in the forward direction.\r\n(Optional. May only be specified if PreviousPageToken is not specified.)",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "previousPageToken",
+            "in": "query",
+            "description": "The unique identifier of the item that the resulting query result should end before, in the sort order of the given endpoint.\r\nUsed for traversing a paginated set in the reverse direction.\r\n(Optional. May only be specified if NextPageToken is not specified.)",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "maximum number of items to retrieve -- default 100, minimum 1, maximum 200 (optional)",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "startDate",
+            "in": "query",
+            "description": "(optional) Filters out results before this timestamp. In ISO 8601 format (e.g., \"2019-01-02T16:23:45Z\").\r\nPrecision beyond one second is not supported. Use pagination parameters for more precise filtering.",
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "name": "endDate",
+            "in": "query",
+            "description": "(optional) Filters out result after this timestamp.  Uses the same format as StartDate.\r\nEither, both, or neither of StartDate and EndDate can be set.  The only constraint on the pair is that, \r\nif both are set, then EndDate cannot be before StartDate.",
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Execution"
+              }
+            }
+          }
+        },
+        "x-btx-authenticated": true
+      }
+    },
+    "/executions/last-id": {
+      "get": {
+        "tags": [
+          "Executions"
+        ],
+        "description": "Gets sequence number and last execution id",
+        "operationId": "Executions_ListOpen",
+        "consumes": [
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "marketSymbol",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ExecutionLastId"
+            }
+          }
+        },
+        "x-btx-authenticated": true
+      },
+      "head": {
+        "tags": [
+          "Executions"
+        ],
+        "description": "Get sequence number for executions.",
+        "operationId": "Executions_GetExecutionsNonce",
+        "consumes": [
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "x-btx-authenticated": true
+      }
+    },
     "/markets": {
       "get": {
         "tags": [
@@ -1064,7 +1341,7 @@
         }
       }
     },
-    "/markets/{marketSymbol}/candles/{candleInterval}/recent": {
+    "/markets/{marketSymbol}/candles/{candleType}/{candleInterval}/recent": {
       "get": {
         "tags": [
           "Markets"
@@ -1095,6 +1372,17 @@
               "MINUTE_5",
               "HOUR_1",
               "DAY_1"
+            ]
+          },
+          {
+            "name": "candleType",
+            "in": "path",
+            "description": "type of candles (trades or midpoint). This portion of the url may be omitted if trade based candles are desired (e.g. /candes/{candleInterval}/recent will return trade based candles)",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "TRADE",
+              "MIDPOINT"
             ]
           }
         ],
@@ -1141,6 +1429,17 @@
               "HOUR_1",
               "DAY_1"
             ]
+          },
+          {
+            "name": "candleType",
+            "in": "path",
+            "description": "type of candles (trades or midpoint). This portion of the url may be omitted if trade based candles are desired (e.g. /candes/{candleInterval}/recent will return trade based candles)",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "TRADE",
+              "MIDPOINT"
+            ]
           }
         ],
         "responses": {
@@ -1150,7 +1449,7 @@
         }
       }
     },
-    "/markets/{marketSymbol}/candles/{candleInterval}/historical/{year}/{month}/{day}": {
+    "/markets/{marketSymbol}/candles/{candleType}/{candleInterval}/historical/{year}/{month}/{day}": {
       "get": {
         "tags": [
           "Markets"
@@ -1195,7 +1494,7 @@
             "name": "month",
             "in": "path",
             "description": "desired month to start from (if applicable)",
-            "required": true,
+            "required": false,
             "type": "integer",
             "format": "int32"
           },
@@ -1203,9 +1502,20 @@
             "name": "day",
             "in": "path",
             "description": "desired day to start from (if applicable)",
-            "required": true,
+            "required": false,
             "type": "integer",
             "format": "int32"
+          },
+          {
+            "name": "candleType",
+            "in": "path",
+            "description": "type of candles (trades or midpoint). This portion of the url may be omitted if trade based candles are desired (e.g. /candes/{candleInterval}/historical/{year} will return trade based candles)",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "TRADE",
+              "MIDPOINT"
+            ]
           }
         ],
         "responses": {
@@ -2162,13 +2472,13 @@
         "x-btx-authenticated": true
       }
     },
-    "/withdrawals/whitelistAddresses": {
+    "/withdrawals/allowed-addresses": {
       "get": {
         "tags": [
           "Withdrawals"
         ],
-        "description": "Returns a list of white listed addresses.",
-        "operationId": "Withdrawals_WhitelistAddresses",
+        "description": "Returns a list of allowed addresses.",
+        "operationId": "Withdrawals_AllowedAddresses",
         "consumes": [
         ],
         "produces": [
@@ -2178,7 +2488,7 @@
           "200": {
             "description": "OK",
             "schema": {
-              "$ref": "#/definitions/WhiteListAddress"
+              "$ref": "#/definitions/AllowedAddress"
             }
           }
         },
@@ -2216,6 +2526,78 @@
           "format": "double",
           "description": "30 day volume information.",
           "type": "number"
+        }
+      }
+    },
+    "MarketPolicy": {
+      "type": "object",
+      "properties": {
+        "symbol": {
+          "description": "unique ID for the market this policy is associated with",
+          "type": "string"
+        },
+        "view": {
+          "description": "true if the current user should be shown information about this market",
+          "type": "boolean"
+        },
+        "buy": {
+          "description": "true if the current user can place buy orders on this market",
+          "type": "boolean"
+        },
+        "sell": {
+          "description": "true if the current user can place sell orders on this market",
+          "type": "boolean"
+        }
+      }
+    },
+    "CurrencyPolicy": {
+      "type": "object",
+      "properties": {
+        "symbol": {
+          "description": "unique ID for the currency this policy is associated with",
+          "type": "string"
+        },
+        "view": {
+          "description": "true if the current user should be shown information about this currency",
+          "type": "boolean"
+        },
+        "deposit": {
+          "$ref": "#/definitions/DepositMethods",
+          "description": "methods for depositing this currency"
+        },
+        "withdraw": {
+          "$ref": "#/definitions/WithdrawMethods",
+          "description": "methods for withdrawing this currency"
+        }
+      }
+    },
+    "DepositMethods": {
+      "type": "object",
+      "properties": {
+        "blockchain": {
+          "description": "true if the current user can deposit this currency via blockchain transaction",
+          "type": "boolean"
+        },
+        "creditCard": {
+          "description": "true if the current user can deposit this currency via credit card",
+          "type": "boolean"
+        },
+        "wireTransfer": {
+          "description": "true if the current user can deposit this currency via wire transfer",
+          "type": "boolean"
+        }
+      }
+    },
+    "WithdrawMethods": {
+      "type": "object",
+      "properties": {
+        "blockchain": {
+          "description": "true if the current user can withdraw this currency via blockchain transaction",
+          "type": "boolean"
+        },
+        "wireTransfer": {
+          "description": "true if the current user can withdraw this currency via wire transfer",
+          "type": "boolean"
         }
       }
     },
@@ -2287,6 +2669,55 @@
           "format": "date-time",
           "description": "time stamp when this balance was last updated",
           "type": "string"
+        }
+      }
+    },
+    "BatchOperation": {
+      "description": "Base class for Batch operation request",
+      "required": [
+        "resource",
+        "operation",
+        "payload"
+      ],
+      "type": "object",
+      "properties": {
+        "resource": {
+          "description": "resource type for batch operation",
+          "enum": [
+            "ORDER"
+          ],
+          "type": "string"
+        },
+        "operation": {
+          "description": "batch operation type",
+          "enum": [
+            "DELETE",
+            "POST"
+          ],
+          "type": "string"
+        },
+        "payload": {
+          "description": "Details for this operation. Type varies depending on the resource and operation. For POST order see NewOrder. For DELETE order see DeleteOrder",
+          "type": "object"
+        }
+      }
+    },
+    "BatchResponse": {
+      "description": "Base class for batch response",
+      "required": [
+        "status",
+        "payload"
+      ],
+      "type": "object",
+      "properties": {
+        "status": {
+          "format": "int32",
+          "description": "status code of this batch operation",
+          "type": "integer"
+        },
+        "payload": {
+          "description": "Detailed results for this operation. Type varies depending on the resource, operation, and whether it was successful. Currently this will be either an Order or an Error",
+          "type": "object"
         }
       }
     },
@@ -2432,7 +2863,8 @@
             "IMMEDIATE_OR_CANCEL",
             "FILL_OR_KILL",
             "POST_ONLY_GOOD_TIL_CANCELLED",
-            "BUY_NOW"
+            "BUY_NOW",
+            "INSTANT"
           ],
           "type": "string"
         },
@@ -2590,7 +3022,7 @@
           "type": "string"
         },
         "prohibitedIn": {
-          "description": "list of prohibited regions. empty if its not restricted.",
+          "description": "list of prohibited regions. empty if its not restricted. NOTE: Currently this field only indicates if the currency is prohibited in the US. We recommend using the account/permissions/currencies endpoint instead.",
           "type": "array",
           "items": {
             "enum": [
@@ -2605,6 +3037,13 @@
         },
         "associatedTermsOfService": {
           "description": "list of associated terms of service.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "tags": {
+          "description": "metadata tags for this currency",
           "type": "array",
           "items": {
             "type": "string"
@@ -2687,6 +3126,72 @@
         }
       }
     },
+    "Execution": {
+      "required": [
+        "id",
+        "marketSymbol",
+        "executedAt",
+        "quantity",
+        "rate",
+        "orderId",
+        "commission",
+        "isTaker"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "uuid",
+          "description": "unique ID of this execution, assigned by the service",
+          "type": "string",
+          "example": "00000000-0000-0000-0000-000000000000"
+        },
+        "marketSymbol": {
+          "description": "market symbol where this execution took place",
+          "type": "string"
+        },
+        "executedAt": {
+          "format": "date-time",
+          "description": "time when the execution was processed",
+          "type": "string"
+        },
+        "quantity": {
+          "format": "double",
+          "description": "quantity traded during this execution",
+          "type": "number"
+        },
+        "rate": {
+          "format": "double",
+          "description": "rate at which this trade was executed",
+          "type": "number"
+        },
+        "orderId": {
+          "format": "uuid",
+          "description": "order ID associated with this execution",
+          "type": "string",
+          "example": "00000000-0000-0000-0000-000000000000"
+        },
+        "commission": {
+          "format": "double",
+          "description": "commission charged for this execution",
+          "type": "number"
+        },
+        "isTaker": {
+          "description": "true if the order ID specified was the taker for this execution, otherwise false",
+          "type": "boolean"
+        }
+      }
+    },
+    "ExecutionLastId": {
+      "type": "object",
+      "properties": {
+        "lastId": {
+          "format": "uuid",
+          "description": "last lot id for the user",
+          "type": "string",
+          "example": "00000000-0000-0000-0000-000000000000"
+        }
+      }
+    },
     "Market": {
       "type": "object",
       "properties": {
@@ -2730,7 +3235,7 @@
           "type": "string"
         },
         "prohibitedIn": {
-          "description": "list of prohibited regions. empty if its not restricted.",
+          "description": "list of prohibited regions. empty if its not restricted. NOTE: Currently this field only indicates if the market is prohibited in the US. We recommend using the account/permissions/markets endpoint instead.",
           "type": "array",
           "items": {
             "enum": [
@@ -2745,6 +3250,13 @@
           "items": {
             "type": "string"
           }
+        },
+        "tags": {
+          "description": "metadata tags for this market",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         }
       }
     },
@@ -2755,7 +3267,6 @@
         "low",
         "volume",
         "quoteVolume",
-        "percentChange",
         "updatedAt"
       ],
       "type": "object",
@@ -2914,9 +3425,7 @@
         "open",
         "high",
         "low",
-        "close",
-        "volume",
-        "quoteVolume"
+        "close"
       ],
       "type": "object",
       "properties": {
@@ -3022,7 +3531,8 @@
             "IMMEDIATE_OR_CANCEL",
             "FILL_OR_KILL",
             "POST_ONLY_GOOD_TIL_CANCELLED",
-            "BUY_NOW"
+            "BUY_NOW",
+            "INSTANT"
           ],
           "type": "string"
         },
@@ -3089,61 +3599,6 @@
         },
         "result": {
           "$ref": "#/definitions/Order"
-        }
-      }
-    },
-    "Execution": {
-      "required": [
-        "id",
-        "marketSymbol",
-        "executedAt",
-        "quantity",
-        "rate",
-        "orderId",
-        "commission",
-        "isTaker"
-      ],
-      "type": "object",
-      "properties": {
-        "id": {
-          "format": "uuid",
-          "description": "unique ID of this execution, assigned by the service",
-          "type": "string",
-          "example": "00000000-0000-0000-0000-000000000000"
-        },
-        "marketSymbol": {
-          "description": "market symbol where this execution took place",
-          "type": "string"
-        },
-        "executedAt": {
-          "format": "date-time",
-          "description": "time when the execution was processed",
-          "type": "string"
-        },
-        "quantity": {
-          "format": "double",
-          "description": "quantity traded during this execution",
-          "type": "number"
-        },
-        "rate": {
-          "format": "double",
-          "description": "rate at which this trade was executed",
-          "type": "number"
-        },
-        "orderId": {
-          "format": "uuid",
-          "description": "order ID associated with this execution",
-          "type": "string",
-          "example": "00000000-0000-0000-0000-000000000000"
-        },
-        "commission": {
-          "format": "double",
-          "description": "commission charged for this execution",
-          "type": "number"
-        },
-        "isTaker": {
-          "description": "true if the order ID specified was the taker for this execution, otherwise false",
-          "type": "boolean"
         }
       }
     },
@@ -3421,7 +3876,7 @@
         }
       }
     },
-    "WhiteListAddress": {
+    "AllowedAddress": {
       "required": [
         "currencySymbol",
         "createdAt",
@@ -3431,12 +3886,12 @@
       "type": "object",
       "properties": {
         "currencySymbol": {
-          "description": "the unique ID of the currency for this withdrawal whitelist address",
+          "description": "the unique ID of the currency for this withdrawal allowed address",
           "type": "string"
         },
         "createdAt": {
           "format": "date-time",
-          "description": "date and time this address was added to the whitelist",
+          "description": "date and time this address was added to the allowed list",
           "type": "string"
         },
         "status": {
