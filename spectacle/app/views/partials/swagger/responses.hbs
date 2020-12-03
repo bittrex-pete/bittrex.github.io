@@ -61,7 +61,7 @@
         {{#schemaReferenceContext $ref}}
           {{#if schema}}
           <section>
-            <h5>Response Example <span>({{@key}} {{httpResponseCode @key}})</span></h5>
+            <h5>Response Schema <span>({{@key}} {{httpResponseCode @key}})</span></h5>
             {{>swagger/print-example .}}
           </section>
           {{/if}}
@@ -89,6 +89,10 @@
                 </table>
               </section>
             </section>
+          {{/if}}
+          {{#if x-btx-response-body-example}}
+          <h5>Response Example <span>({{@key}} {{httpResponseCode @key}})</span></h5>
+          <pre><code>{{x-btx-response-body-example}}</code></pre>
           {{/if}}
         {{/schemaReferenceContext}}
       {{/each}}
