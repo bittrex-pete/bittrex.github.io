@@ -25,8 +25,12 @@
             </h5>
             {{/if}}
             {{#if _show_requst_body_section}}
-            <h5>Request Body Example</h5>
+            <h5>Request Body Schema</h5>
             {{>swagger/print-example _request_body showReadOnly=false}}
+            {{/if}}
+            {{#if x-btx-request-body-example}}
+            <h5>Request Body Example</h5>
+            <pre><code>{{x-btx-request-body-example}}</code></pre>
             {{/if}}
         </section>
     </div>
