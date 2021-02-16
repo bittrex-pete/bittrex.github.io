@@ -70,6 +70,18 @@
             <li>
               <a href="#operation--account-volume-get" title="/account/volume"> GET /account/volume </a>
             </li>
+            <li>
+              <a href="#operation--account-permissions-markets-get" title="/account/permissions/markets"> GET /account/permissions/markets </a>
+            </li>
+            <li>
+              <a href="#operation--account-permissions-markets--marketSymbol--get" title="/account/permissions/markets/{marketSymbol}"> GET /account/permissions/markets/{marketSymbol} </a>
+            </li>
+            <li>
+              <a href="#operation--account-permissions-currencies-get" title="/account/permissions/currencies"> GET /account/permissions/currencies </a>
+            </li>
+            <li>
+              <a href="#operation--account-permissions-currencies--currencySymbol--get" title="/account/permissions/currencies/{currencySymbol}"> GET /account/permissions/currencies/{currencySymbol} </a>
+            </li>
           </ul>
         </section>
         <section>
@@ -97,6 +109,14 @@
             </li>
             <li>
               <a href="#operation--balances--currencySymbol--get" title="/balances/{currencySymbol}"> GET /balances/{currencySymbol} </a>
+            </li>
+          </ul>
+        </section>
+        <section>
+          <a href="#tag-Batch">Batch</a>
+          <ul>
+            <li>
+              <a href="#operation--batch-post" title="/batch"> POST /batch </a>
             </li>
           </ul>
         </section>
@@ -155,6 +175,20 @@
           </ul>
         </section>
         <section>
+          <a href="#tag-Executions">Executions</a>
+          <ul>
+            <li>
+              <a href="#operation--executions-get" title="/executions"> GET /executions </a>
+            </li>
+            <li>
+              <a href="#operation--executions-last-id-get" title="/executions/last-id"> GET /executions/last-id </a>
+            </li>
+            <li>
+              <a href="#operation--executions-last-id-head" title="/executions/last-id"> HEAD /executions/last-id </a>
+            </li>
+          </ul>
+        </section>
+        <section>
           <a href="#tag-Markets">Markets</a>
           <ul>
             <li>
@@ -194,13 +228,13 @@
               <a href="#operation--markets--marketSymbol--trade-head" title="/markets/{marketSymbol}/trade"> HEAD /markets/{marketSymbol}/trade </a>
             </li>
             <li>
-              <a href="#operation--markets--marketSymbol--candles--candleInterval--recent-get" title="/markets/{marketSymbol}/candles/{candleInterval}/recent"> GET /markets/{marketSymbol}/candles/{candleInterval}/recent </a>
+              <a href="#operation--markets--marketSymbol--candles--candleType---candleInterval--recent-get" title="/markets/{marketSymbol}/candles/{candleType}/{candleInterval}/recent"> GET /markets/{marketSymbol}/candles/{candleType}/{candleInterval}/recent </a>
             </li>
             <li>
-              <a href="#operation--markets--marketSymbol--candles--candleInterval--recent-head" title="/markets/{marketSymbol}/candles/{candleInterval}/recent"> HEAD /markets/{marketSymbol}/candles/{candleInterval}/recent </a>
+              <a href="#operation--markets--marketSymbol--candles--candleType---candleInterval--recent-head" title="/markets/{marketSymbol}/candles/{candleType}/{candleInterval}/recent"> HEAD /markets/{marketSymbol}/candles/{candleType}/{candleInterval}/recent </a>
             </li>
             <li>
-              <a href="#operation--markets--marketSymbol--candles--candleInterval--historical--year---month---day--get" title="/markets/{marketSymbol}/candles/{candleInterval}/historical/{year}/{month}/{day}"> GET /markets/{marketSymbol}/candles/{candleInterval}/historical/{year}/{month}/{day} </a>
+              <a href="#operation--markets--marketSymbol--candles--candleType---candleInterval--historical--year---month---day--get" title="/markets/{marketSymbol}/candles/{candleType}/{candleInterval}/historical/{year}/{month}/{day}"> GET /markets/{marketSymbol}/candles/{candleType}/{candleInterval}/historical/{year}/{month}/{day} </a>
             </li>
           </ul>
         </section>
@@ -294,7 +328,7 @@
               <a href="#operation--withdrawals-post" title="/withdrawals"> POST /withdrawals </a>
             </li>
             <li>
-              <a href="#operation--withdrawals-whitelistAddresses-get" title="/withdrawals/whitelistAddresses"> GET /withdrawals/whitelistAddresses </a>
+              <a href="#operation--withdrawals-allowed-addresses-get" title="/withdrawals/allowed-addresses"> GET /withdrawals/allowed-addresses </a>
             </li>
           </ul>
         </section>
@@ -308,6 +342,7 @@
         <a href="#method-Candle" title="Candle"> Candle </a>
         <a href="#method-Conditional-Order" title="Conditional Order"> Conditional Order </a>
         <a href="#method-Deposit" title="Deposit"> Deposit </a>
+        <a href="#method-Execution" title="Execution"> Execution </a>
         <a href="#method-Heartbeat" title="Heartbeat"> Heartbeat </a>
         <a href="#method-Market-Summaries" title="Market Summaries"> Market Summaries </a>
         <a href="#method-Market-Summary" title="Market Summary"> Market Summary </a>
@@ -319,9 +354,15 @@
         <h5>Schema Definitions</h5>
         <a href="#definition-Account" title="Account"> Account </a>
         <a href="#definition-AccountVolume" title="AccountVolume"> AccountVolume </a>
+        <a href="#definition-MarketPolicy" title="MarketPolicy"> MarketPolicy </a>
+        <a href="#definition-CurrencyPolicy" title="CurrencyPolicy"> CurrencyPolicy </a>
+        <a href="#definition-DepositMethods" title="DepositMethods"> DepositMethods </a>
+        <a href="#definition-WithdrawMethods" title="WithdrawMethods"> WithdrawMethods </a>
         <a href="#definition-Address" title="Address"> Address </a>
         <a href="#definition-NewAddress" title="NewAddress"> NewAddress </a>
         <a href="#definition-Balance" title="Balance"> Balance </a>
+        <a href="#definition-BatchOperation" title="BatchOperation"> BatchOperation </a>
+        <a href="#definition-BatchResponse" title="BatchResponse"> BatchResponse </a>
         <a href="#definition-ConditionalOrder" title="ConditionalOrder"> ConditionalOrder </a>
         <a href="#definition-NewOrder" title="NewOrder"> NewOrder </a>
         <a href="#definition-NewCancelConditionalOrder" title="NewCancelConditionalOrder"> NewCancelConditionalOrder </a>
@@ -330,6 +371,8 @@
         <a href="#definition-NewConditionalOrder" title="NewConditionalOrder"> NewConditionalOrder </a>
         <a href="#definition-Currency" title="Currency"> Currency </a>
         <a href="#definition-Deposit" title="Deposit"> Deposit </a>
+        <a href="#definition-Execution" title="Execution"> Execution </a>
+        <a href="#definition-ExecutionLastId" title="ExecutionLastId"> ExecutionLastId </a>
         <a href="#definition-Market" title="Market"> Market </a>
         <a href="#definition-MarketSummary" title="MarketSummary"> MarketSummary </a>
         <a href="#definition-Ticker" title="Ticker"> Ticker </a>
@@ -339,7 +382,6 @@
         <a href="#definition-Candle" title="Candle"> Candle </a>
         <a href="#definition-Order" title="Order"> Order </a>
         <a href="#definition-BulkCancelResult" title="BulkCancelResult"> BulkCancelResult </a>
-        <a href="#definition-Execution" title="Execution"> Execution </a>
         <a href="#definition-ServicePing" title="ServicePing"> ServicePing </a>
         <a href="#definition-Subaccount" title="Subaccount"> Subaccount </a>
         <a href="#definition-NewSubaccount" title="NewSubaccount"> NewSubaccount </a>
@@ -348,7 +390,7 @@
         <a href="#definition-NewTransfer" title="NewTransfer"> NewTransfer </a>
         <a href="#definition-Withdrawal" title="Withdrawal"> Withdrawal </a>
         <a href="#definition-NewWithdrawal" title="NewWithdrawal"> NewWithdrawal </a>
-        <a href="#definition-WhiteListAddress" title="WhiteListAddress"> WhiteListAddress </a>
+        <a href="#definition-AllowedAddress" title="AllowedAddress"> AllowedAddress </a>
         <a href="#definition-DeleteOrder" title="DeleteOrder"> DeleteOrder </a>
         <a href="#definition-Error" title="Error"> Error </a>
         <a href="#definition-SocketResponse" title="SocketResponse"> SocketResponse </a>
@@ -392,6 +434,22 @@
         <div class="panel">
           <div class="doc-row">
             <div class="doc-copy">
+              <p>
+                <strong>12/02/2020</strong>
+              </p>
+              <ul>
+                <li>There is now a socket stream for
+                  <a href="#method-Execution">executions</a>! As well as a corresponding set of REST endpoints for retrieving
+                  <a href="#operation--executions-get">historical executions</a> and
+                  <a href="#operation--executions-last-id-get">synchronizing</a>.</li>
+                <li>You can now place or cancel multiple orders with a single request using the
+                  <a href="#operation--batch-post">/batch</a> endpoint</li>
+                <li>Determining which markets and currencies you have access to can now be done more easily and explicitly via the
+                  <a href="#operation--account-permissions-markets-get">market permissions</a> and
+                  <a href="#operation--account-permissions-currencies-get">currency permissions</a> endpoints</li>
+                <li>It is now possible to retrieve market candles based on the midpoint between best bid ad ask in addition to candles based on trade prices (note that midpoint candles from prior to 12/2 are not available)</li>
+                <li>The /withdrawals/whitelistAddresses endpoint has been renamed to /withdrawals/allowed-addresses for clarity. The old name will continue to work.</li>
+              </ul>
               <p>
                 <strong>09/23/2020</strong>
               </p>
@@ -509,10 +567,9 @@
           <div class="doc-row">
             <div class="doc-copy">
               <h3 id="call-limits">Call Limits</h3>
-              <p> The Bittrex API employs call limits on all endpoints to ensure the efficiency and availability of the platform for all customers. In general, API users are permitted to make a maximum of 60 API calls per minute. Calls after the limit will fail, with the limit resetting at the start of the next minute.</p>
-              <p>
-                <strong>Note: Corporate and high-volume accounts may contact customer support for additional information to ensure that they may continue operating at an optimal level.</strong>
-              </p>
+              <p>The Bittrex API employs call limits on all REST endpoints to ensure the efficiency and availability of the platform for all customers. Limits are set such that they should not interfere with legitimate usage patterns. Frequent polling for updates on market data, order status, history, etc. is discouraged and will likely result in your requests failing with a 429 status code. If you need frequent updates, subscribe to the websocket instead of polling. Frivolous order placement and cancellation in a tight loop with low fill rates is also discouraged.</p>
+              <p>Throttling is tracked on a minute by minute basis with the limit resetting at the start of the next minute. In general, making a maximum of 60 API calls per minute should be safe, but higher request rates are allowed depending on the usage pattern. If you receive a throttling error, back off for the remainder of the minute and reduce the rate of subsequent requests.</p>
+              <p>Additional information and help on this topic are available for corporate and high-volume customers via their account managers.</p>
             </div>
           </div>
         </div>
@@ -877,6 +934,125 @@
                   </tbody>
                 </table>
               </div>
+              <h3 id="error-codes">
+                <strong>Error Codes</strong>
+              </h3>
+              <p>This section lists some common error codes that are returned by the API, but is not an exhaustive list. If you have questions about an error code you are receiving, feel free to post an issue on GitHub.</p>
+              <table>
+                <tbody>
+                  <tr>
+                    <th>Error Code</th>
+                    <th>Description</th>
+                  </tr>
+                  <tr>
+                    <td>ACCOUNT_DISABLED</td>
+                    <td>This account is disabled</td>
+                  </tr>
+                  <tr>
+                    <td>APIKEY_INVALID</td>
+                    <td>The Api-Key request header is missing or invalid</td>
+                  </tr>
+                  <tr>
+                    <td>CLIENTORDERID_ALREADY_EXISTS</td>
+                    <td>The value specified for clientOrderId has already been used. The corresponding Bittrex id for the order will be included in the response.</td>
+                  </tr>
+                  <tr>
+                    <td>CLIENTWITHDRAWALID_ALREADY_EXISTS</td>
+                    <td>The value specified for clientWithdrawalId has already been used. The corresponding Bittrex id for the withdrawal will be included in the response.</td>
+                  </tr>
+                  <tr>
+                    <td>CURRENCY_DOES_NOT_EXIST</td>
+                    <td>The currency symbol provided does not correspond to a currency</td>
+                  </tr>
+                  <tr>
+                    <td>CURRENCY_OFFLINE</td>
+                    <td>The currency is offline</td>
+                  </tr>
+                  <tr>
+                    <td>DUST_TRADE_DISALLOWED_MIN_VALUE</td>
+                    <td>The amount of quote currency involved in a transaction would be less than 50k satoshis</td>
+                  </tr>
+                  <tr>
+                    <td>FILL_OR_KILL</td>
+                    <td>The order was submitted with the fill_or_kill time in force and could not be filled completely so it was cancelled</td</tr>
+                      <tr>
+                        <td>INSUFFICIENT_AWARDS</td>
+                        <td>The order was placed with useAwards: true but the user did not have sufficient balance of BTXCRD to cover commission</td>
+                      </tr>
+                      <tr>
+                        <td>INSUFFICIENT_FUNDS</td>
+                        <td>The user is trying to buy or sell more currency than they can afford or currently hold, respectively</td>
+                      </tr>
+                      <tr>
+                        <td>INVALID_NEXT_PAGE_TOKEN</td>
+                        <td>The specified value for nextPageToken doesn't correspond to an item in the list</td>
+                      </tr>
+                      <tr>
+                        <td>INVALID_PREVIOUS_PAGE_TOKEN</td>
+                        <td>The specified value for previousPageToken doesn't correspond to an item in the list</td>
+                      </tr>
+                      <tr>
+                        <td>INVALID_SIGNATURE</td>
+                        <td>The Api-Signature request header is missing or invalid</td>
+                      </tr>
+                      <tr>
+                        <td>MARKET_DOES_NOT_EXIST</td>
+                        <td>The market symbol provided does not correspond to a market</td>
+                      </tr>
+                      <tr>
+                        <td>MARKET_NAME_REVERSED</td>
+                        <td>Market symbols in v3 are in base-quote order whereas in v1 it was the reverse. This error occures when we think a market symbol was sent to v3 in quote-base order.</td>
+                      </tr>
+                      <tr>
+                        <td>MARKET_OFFLINE</td>
+                        <td>Te market is offline</td>
+                      </tr>
+                      <tr>
+                        <td>MAX_ORDERS_ALLOWED</td>
+                        <td>The user already has the maximum allowed open orders and cannot open another until one is closed</td>
+                      </tr>
+                      <tr>
+                        <td>MIN_TRADE_REQUIREMENT_NOT_MET</td>
+                        <td>The trade was smaller than the min trade size quantity for the market</td>
+                      </tr>
+                      <tr>
+                        <td>NOT_ALLOWED</td>
+                        <td>This account is not allowed to perform this action</td>
+                      </tr>
+                      <tr>
+                        <td>ORDER_NOT_OPEN</td>
+                        <td>Tried to cancel an order that was not open</td>
+                      </tr>
+                      <tr>
+                        <td>ORDER_TYPE_INVALID</td>
+                        <td>The order creation request is malformed in some way</td>
+                      </tr>
+                      <tr>
+                        <td>ORDERBOOK_DEPTH</td>
+                        <td>If allowed to execute, the order would have been executed at least in part at a price in excess of what is allowed by the price slippage limit on the market</td>
+                      </tr>
+                      <tr>
+                        <td>POST_ONLY</td>
+                        <td>The order was submitted as 'post only' but matched with an order already on the book and thus was cancelled</td>
+                      </tr>
+                      <tr>
+                        <td>REQUESTID_ALREADY_EXISTS</td>
+                        <td>The value specified for requestId has already been used. The corresponding Bittrx id for the request will be included in the response.</td>
+                      </tr>
+                      <tr>
+                        <td>SELF_TRADE</td>
+                        <td>The order matched with an order on the book placed by the same user</td>
+                      </tr>
+                      <tr>
+                        <td>SUBACCOUNT_OF_SUBACCOUNT_NOT_ALLOWED</td>
+                        <td>Attempted to create a subaccout of a subaccount</td>
+                      </tr>
+                      <tr>
+                        <td>THROTTLED</td>
+                        <td>Too many requests have been made</td>
+                      </tr>
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
@@ -1078,7 +1254,7 @@
                 <span>application/json</span>
               </h5>
               <section>
-                <h5>Response Example
+                <h5>Response Schema
                   <span>(200 OK)</span>
                 </h5>
                 <!-- <div class="hljs"> --><pre><code class="hljs language-json">{
@@ -1144,12 +1320,360 @@
                 <span>application/json</span>
               </h5>
               <section>
-                <h5>Response Example
+                <h5>Response Schema
                   <span>(200 OK)</span>
                 </h5>
                 <!-- <div class="hljs"> --><pre><code class="hljs language-json">{
   <span class="hljs-attr">&quot;updated&quot;</span>: <span class="hljs-string">&quot;string (date-time)&quot;</span>,
   <span class="hljs-attr">&quot;volume30days&quot;</span>: <span class="hljs-string">&quot;number (double)&quot;</span>
+}
+</code></pre>
+                <!-- </div> -->
+              </section>
+            </div>
+          </div>
+        </div>
+        <div id="operation--account-permissions-markets-get" class="operation panel" data-traverse-target="operation--account-permissions-markets-get">
+          <!-- <section class="operation-tags row"> -->
+          <!-- <div class="doc-copy"> -->
+          <div class="operation-tags">
+            <a class="label alert" href="#topic-Authentication" title="Requires a properly signed request. Click for more.">Authenticated</a>
+            <a class="label" href="#tag-Account">Account</a>
+            <!---->
+          </div>
+          <!-- </div> -->
+          <!-- </section> -->
+          <h2 class="operation-title">
+            <span class="operation-name">
+              <span class="operation-name">GET</span>
+              <span class="operation-path">/account/permissions/markets</span>
+            </span>
+          </h2>
+          <div class="doc-row">
+            <div class="doc-copy">
+              <section class="swagger-operation-description">
+                <p>Get trading permissions</p>
+              </section>
+            </div>
+          </div>
+          <div class="doc-row">
+            <div class="doc-copy"> </div>
+            <div class="doc-examples">
+              <section> </section>
+            </div>
+          </div>
+          <div class="doc-row">
+            <div class="doc-copy">
+              <section class="swagger-responses">
+                <div class="prop-row prop-group">
+                  <div class="prop-name">
+                    <div class="prop-title">200 OK</div>
+                    <div class="prop-ref">
+                      <span class="json-schema-ref-array">
+                        <a class="json-schema-ref" href="#/definitions/MarketPolicy">MarketPolicy</a>
+                      </span>
+                    </div>
+                    <!-- <span class="swagger-global"></span> <span class="json-schema-reference"><a href=""></a></span> -->
+                  </div>
+                  <div class="prop-value">
+                    <p>OK</p>
+                  </div>
+                </div>
+                <div class="prop-row prop-inner">
+                  <div class="prop-name">type</div>
+                  <div class="prop-value">
+                    <span class="json-property-type">
+                      <span class="json-schema-ref-array">
+                        <a class="json-schema-ref" href="#/definitions/MarketPolicy">MarketPolicy</a>
+                      </span>
+                    </span>
+                    <span class="json-property-range" title="Value limits"></span>
+                  </div>
+                </div>
+              </section>
+            </div>
+            <div class="doc-examples">
+              <h5>Response Content-Types:
+                <span>application/json</span>
+              </h5>
+              <section>
+                <h5>Response Schema
+                  <span>(200 OK)</span>
+                </h5>
+                <!-- <div class="hljs"> --><pre><code class="hljs language-json">[
+  {
+    <span class="hljs-attr">&quot;symbol&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+    <span class="hljs-attr">&quot;view&quot;</span>: <span class="hljs-string">&quot;boolean&quot;</span>,
+    <span class="hljs-attr">&quot;buy&quot;</span>: <span class="hljs-string">&quot;boolean&quot;</span>,
+    <span class="hljs-attr">&quot;sell&quot;</span>: <span class="hljs-string">&quot;boolean&quot;</span>
+  }
+]
+</code></pre>
+                <!-- </div> -->
+              </section>
+            </div>
+          </div>
+        </div>
+        <div id="operation--account-permissions-markets--marketSymbol--get" class="operation panel" data-traverse-target="operation--account-permissions-markets--marketSymbol--get">
+          <!-- <section class="operation-tags row"> -->
+          <!-- <div class="doc-copy"> -->
+          <div class="operation-tags">
+            <a class="label alert" href="#topic-Authentication" title="Requires a properly signed request. Click for more.">Authenticated</a>
+            <a class="label" href="#tag-Account">Account</a>
+            <!---->
+          </div>
+          <!-- </div> -->
+          <!-- </section> -->
+          <h2 class="operation-title">
+            <span class="operation-name">
+              <span class="operation-name">GET</span>
+              <span class="operation-path">/account/permissions/markets/{marketSymbol}</span>
+            </span>
+          </h2>
+          <div class="doc-row">
+            <div class="doc-copy">
+              <section class="swagger-operation-description">
+                <p>Get trading permissions for a single market</p>
+              </section>
+            </div>
+          </div>
+          <div class="doc-row">
+            <div class="doc-copy">
+              <section class="swagger-request-params">
+                <div class="prop-row prop-group">
+                  <div class="prop-name">
+                    <div class="prop-title">marketSymbol:
+                      <span class="prop-type">
+                        <span class="json-property-type">string</span>
+                        <span class="json-property-range" title="Value limits"></span>
+                      </span>
+                    </div>
+                    <span class="json-property-required"></span>
+                    <div class="prop-subtitle"> in path </div>
+                  </div>
+                  <div class="prop-value">
+                    <p class="no-description">(no description)</p>
+                  </div>
+                </div>
+              </section>
+            </div>
+            <div class="doc-examples">
+              <section> </section>
+            </div>
+          </div>
+          <div class="doc-row">
+            <div class="doc-copy">
+              <section class="swagger-responses">
+                <div class="prop-row prop-group">
+                  <div class="prop-name">
+                    <div class="prop-title">200 OK</div>
+                    <div class="prop-ref">
+                      <span class="">
+                        <a class="json-schema-ref" href="#/definitions/MarketPolicy">MarketPolicy</a>
+                      </span>
+                    </div>
+                    <!-- <span class="swagger-global"></span> <span class="json-schema-reference"><a href=""></a></span> -->
+                  </div>
+                  <div class="prop-value">
+                    <p>OK</p>
+                  </div>
+                </div>
+              </section>
+            </div>
+            <div class="doc-examples">
+              <h5>Response Content-Types:
+                <span>application/json</span>
+              </h5>
+              <section>
+                <h5>Response Schema
+                  <span>(200 OK)</span>
+                </h5>
+                <!-- <div class="hljs"> --><pre><code class="hljs language-json">{
+  <span class="hljs-attr">&quot;symbol&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+  <span class="hljs-attr">&quot;view&quot;</span>: <span class="hljs-string">&quot;boolean&quot;</span>,
+  <span class="hljs-attr">&quot;buy&quot;</span>: <span class="hljs-string">&quot;boolean&quot;</span>,
+  <span class="hljs-attr">&quot;sell&quot;</span>: <span class="hljs-string">&quot;boolean&quot;</span>
+}
+</code></pre>
+                <!-- </div> -->
+              </section>
+            </div>
+          </div>
+        </div>
+        <div id="operation--account-permissions-currencies-get" class="operation panel" data-traverse-target="operation--account-permissions-currencies-get">
+          <!-- <section class="operation-tags row"> -->
+          <!-- <div class="doc-copy"> -->
+          <div class="operation-tags">
+            <a class="label alert" href="#topic-Authentication" title="Requires a properly signed request. Click for more.">Authenticated</a>
+            <a class="label" href="#tag-Account">Account</a>
+            <!---->
+          </div>
+          <!-- </div> -->
+          <!-- </section> -->
+          <h2 class="operation-title">
+            <span class="operation-name">
+              <span class="operation-name">GET</span>
+              <span class="operation-path">/account/permissions/currencies</span>
+            </span>
+          </h2>
+          <div class="doc-row">
+            <div class="doc-copy">
+              <section class="swagger-operation-description">
+                <p>Get currency permissions</p>
+              </section>
+            </div>
+          </div>
+          <div class="doc-row">
+            <div class="doc-copy"> </div>
+            <div class="doc-examples">
+              <section> </section>
+            </div>
+          </div>
+          <div class="doc-row">
+            <div class="doc-copy">
+              <section class="swagger-responses">
+                <div class="prop-row prop-group">
+                  <div class="prop-name">
+                    <div class="prop-title">200 OK</div>
+                    <div class="prop-ref">
+                      <span class="json-schema-ref-array">
+                        <a class="json-schema-ref" href="#/definitions/CurrencyPolicy">CurrencyPolicy</a>
+                      </span>
+                    </div>
+                    <!-- <span class="swagger-global"></span> <span class="json-schema-reference"><a href=""></a></span> -->
+                  </div>
+                  <div class="prop-value">
+                    <p>OK</p>
+                  </div>
+                </div>
+                <div class="prop-row prop-inner">
+                  <div class="prop-name">type</div>
+                  <div class="prop-value">
+                    <span class="json-property-type">
+                      <span class="json-schema-ref-array">
+                        <a class="json-schema-ref" href="#/definitions/CurrencyPolicy">CurrencyPolicy</a>
+                      </span>
+                    </span>
+                    <span class="json-property-range" title="Value limits"></span>
+                  </div>
+                </div>
+              </section>
+            </div>
+            <div class="doc-examples">
+              <h5>Response Content-Types:
+                <span>application/json</span>
+              </h5>
+              <section>
+                <h5>Response Schema
+                  <span>(200 OK)</span>
+                </h5>
+                <!-- <div class="hljs"> --><pre><code class="hljs language-json">[
+  {
+    <span class="hljs-attr">&quot;symbol&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+    <span class="hljs-attr">&quot;view&quot;</span>: <span class="hljs-string">&quot;boolean&quot;</span>,
+    <span class="hljs-attr">&quot;deposit&quot;</span>: {
+      <span class="hljs-attr">&quot;blockchain&quot;</span>: <span class="hljs-string">&quot;boolean&quot;</span>,
+      <span class="hljs-attr">&quot;creditCard&quot;</span>: <span class="hljs-string">&quot;boolean&quot;</span>,
+      <span class="hljs-attr">&quot;wireTransfer&quot;</span>: <span class="hljs-string">&quot;boolean&quot;</span>
+    },
+    <span class="hljs-attr">&quot;withdraw&quot;</span>: {
+      <span class="hljs-attr">&quot;blockchain&quot;</span>: <span class="hljs-string">&quot;boolean&quot;</span>,
+      <span class="hljs-attr">&quot;wireTransfer&quot;</span>: <span class="hljs-string">&quot;boolean&quot;</span>
+    }
+  }
+]
+</code></pre>
+                <!-- </div> -->
+              </section>
+            </div>
+          </div>
+        </div>
+        <div id="operation--account-permissions-currencies--currencySymbol--get" class="operation panel" data-traverse-target="operation--account-permissions-currencies--currencySymbol--get">
+          <!-- <section class="operation-tags row"> -->
+          <!-- <div class="doc-copy"> -->
+          <div class="operation-tags">
+            <a class="label alert" href="#topic-Authentication" title="Requires a properly signed request. Click for more.">Authenticated</a>
+            <a class="label" href="#tag-Account">Account</a>
+            <!---->
+          </div>
+          <!-- </div> -->
+          <!-- </section> -->
+          <h2 class="operation-title">
+            <span class="operation-name">
+              <span class="operation-name">GET</span>
+              <span class="operation-path">/account/permissions/currencies/{currencySymbol}</span>
+            </span>
+          </h2>
+          <div class="doc-row">
+            <div class="doc-copy">
+              <section class="swagger-operation-description">
+                <p>Get currency permissions for a single currency</p>
+              </section>
+            </div>
+          </div>
+          <div class="doc-row">
+            <div class="doc-copy">
+              <section class="swagger-request-params">
+                <div class="prop-row prop-group">
+                  <div class="prop-name">
+                    <div class="prop-title">currencySymbol:
+                      <span class="prop-type">
+                        <span class="json-property-type">string</span>
+                        <span class="json-property-range" title="Value limits"></span>
+                      </span>
+                    </div>
+                    <span class="json-property-required"></span>
+                    <div class="prop-subtitle"> in path </div>
+                  </div>
+                  <div class="prop-value">
+                    <p class="no-description">(no description)</p>
+                  </div>
+                </div>
+              </section>
+            </div>
+            <div class="doc-examples">
+              <section> </section>
+            </div>
+          </div>
+          <div class="doc-row">
+            <div class="doc-copy">
+              <section class="swagger-responses">
+                <div class="prop-row prop-group">
+                  <div class="prop-name">
+                    <div class="prop-title">200 OK</div>
+                    <div class="prop-ref">
+                      <span class="">
+                        <a class="json-schema-ref" href="#/definitions/CurrencyPolicy">CurrencyPolicy</a>
+                      </span>
+                    </div>
+                    <!-- <span class="swagger-global"></span> <span class="json-schema-reference"><a href=""></a></span> -->
+                  </div>
+                  <div class="prop-value">
+                    <p>OK</p>
+                  </div>
+                </div>
+              </section>
+            </div>
+            <div class="doc-examples">
+              <h5>Response Content-Types:
+                <span>application/json</span>
+              </h5>
+              <section>
+                <h5>Response Schema
+                  <span>(200 OK)</span>
+                </h5>
+                <!-- <div class="hljs"> --><pre><code class="hljs language-json">{
+  <span class="hljs-attr">&quot;symbol&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+  <span class="hljs-attr">&quot;view&quot;</span>: <span class="hljs-string">&quot;boolean&quot;</span>,
+  <span class="hljs-attr">&quot;deposit&quot;</span>: {
+    <span class="hljs-attr">&quot;blockchain&quot;</span>: <span class="hljs-string">&quot;boolean&quot;</span>,
+    <span class="hljs-attr">&quot;creditCard&quot;</span>: <span class="hljs-string">&quot;boolean&quot;</span>,
+    <span class="hljs-attr">&quot;wireTransfer&quot;</span>: <span class="hljs-string">&quot;boolean&quot;</span>
+  },
+  <span class="hljs-attr">&quot;withdraw&quot;</span>: {
+    <span class="hljs-attr">&quot;blockchain&quot;</span>: <span class="hljs-string">&quot;boolean&quot;</span>,
+    <span class="hljs-attr">&quot;wireTransfer&quot;</span>: <span class="hljs-string">&quot;boolean&quot;</span>
+  }
 }
 </code></pre>
                 <!-- </div> -->
@@ -1223,7 +1747,7 @@
                 <span>application/json</span>
               </h5>
               <section>
-                <h5>Response Example
+                <h5>Response Schema
                   <span>(200 OK)</span>
                 </h5>
                 <!-- <div class="hljs"> --><pre><code class="hljs language-json">[
@@ -1288,7 +1812,7 @@
                 <h5>Request Content-Types:
                   <span>application/json</span>
                 </h5>
-                <h5>Request Body Example</h5>
+                <h5>Request Body Schema</h5>
                 <!-- <div class="hljs"> --><pre><code class="hljs language-json">{
   <span class="hljs-attr">&quot;currencySymbol&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
 }
@@ -1321,7 +1845,7 @@
                 <span>application/json</span>
               </h5>
               <section>
-                <h5>Response Example
+                <h5>Response Schema
                   <span>(201 Created)</span>
                 </h5>
                 <!-- <div class="hljs"> --><pre><code class="hljs language-json">{
@@ -1408,7 +1932,7 @@
                 <span>application/json</span>
               </h5>
               <section>
-                <h5>Response Example
+                <h5>Response Schema
                   <span>(200 OK)</span>
                 </h5>
                 <!-- <div class="hljs"> --><pre><code class="hljs language-json">{
@@ -1489,7 +2013,7 @@
                 <span>application/json</span>
               </h5>
               <section>
-                <h5>Response Example
+                <h5>Response Schema
                   <span>(200 OK)</span>
                 </h5>
                 <!-- <div class="hljs"> --><pre><code class="hljs language-json">[
@@ -1627,7 +2151,7 @@
                 <span>application/json</span>
               </h5>
               <section>
-                <h5>Response Example
+                <h5>Response Schema
                   <span>(200 OK)</span>
                 </h5>
                 <!-- <div class="hljs"> --><pre><code class="hljs language-json">{
@@ -1640,6 +2164,193 @@
                 <!-- </div> -->
               </section>
             </div>
+          </div>
+        </div>
+        <h1 id="tag-Batch" class="swagger-summary-tag" data-traverse-target="tag-Batch">Batch</h1>
+        <div id="operation--batch-post" class="operation panel" data-traverse-target="operation--batch-post">
+          <!-- <section class="operation-tags row"> -->
+          <!-- <div class="doc-copy"> -->
+          <div class="operation-tags">
+            <a class="label alert" href="#topic-Authentication" title="Requires a properly signed request. Click for more.">Authenticated</a>
+            <a class="label" href="#tag-Batch">Batch</a>
+            <!---->
+          </div>
+          <!-- </div> -->
+          <!-- </section> -->
+          <h2 class="operation-title">
+            <span class="operation-name">
+              <span class="operation-name">POST</span>
+              <span class="operation-path">/batch</span>
+            </span>
+          </h2>
+          <div class="doc-row">
+            <div class="doc-copy">
+              <section class="swagger-operation-description">
+                <p>Create a new batch request. Currently batch requests are limited to placing and cancelling orders. The request model corresponds to the equivalent individual operations. Batch operations are executed sequentially in the order they are listed in the request. The response will return one result for each operation in the request in the same order. The status and response payload are the same as the responses would be if individual API requests were made for each operation.</p>
+              </section>
+            </div>
+          </div>
+          <div class="doc-row">
+            <div class="doc-copy">
+              <section class="swagger-request-body">
+                <p>List of operations in the batch</p>
+                <section class="json-schema-array-items">
+                  <span class="json-property-type">
+                    <span class="">
+                      <a class="json-schema-ref" href="#/definitions/BatchOperation">BatchOperation</a>
+                    </span>
+                  </span>
+                  <span class="json-property-range" title="Value limits"></span>
+                  <div class="json-inner-schema"> </div>
+                </section>
+              </section>
+            </div>
+            <div class="doc-examples">
+              <section>
+                <h5>Request Content-Types:
+                  <span>application/json</span>
+                </h5>
+                <h5>Request Body Schema</h5>
+                <!-- <div class="hljs"> --><pre><code class="hljs language-json">[
+  {
+    <span class="hljs-attr">&quot;resource&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+    <span class="hljs-attr">&quot;operation&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+    <span class="hljs-attr">&quot;payload&quot;</span>: <span class="hljs-string">&quot;object&quot;</span>
+  }
+]
+</code></pre>
+                <!-- </div> -->
+                <h5>Request Body Example</h5> <pre><code>
+[
+  {
+    &quot;resource&quot;: &quot;order&quot;,
+    &quot;operation&quot;: &quot;post&quot;,
+    &quot;payload&quot;: { 
+      &quot;marketSymbol&quot;: &quot;BTC-USD&quot;, 
+      &quot;direction&quot;: &quot;BUY&quot;, 
+      &quot;type&quot;: &quot;LIMIT&quot;, 
+      &quot;quantity&quot;: 1, 
+      &quot;limit&quot;: 20000, 
+      &quot;timeInForce&quot;: &quot;GOOD_TIL_CANCELLED&quot; 
+    }
+  },
+  {
+    &quot;resource&quot;: &quot;order&quot;,
+    &quot;operation&quot;: &quot;post&quot;,
+    &quot;payload&quot;: {
+      &quot;marketSymbol&quot;: &quot;BTC-USD&quot;,
+      &quot;direction&quot;: &quot;BUY&quot;,
+      &quot;type&quot;: &quot;LIMIT&quot;,
+      &quot;quantity&quot;: 1,
+      &quot;limit&quot;: 20050,
+      &quot;timeInForce&quot;: &quot;GOOD_TIL_CANCELLED&quot;
+    }
+  },
+  {
+    &quot;resource&quot;: &quot;order&quot;,
+    &quot;operation&quot;: &quot;delete&quot;,
+    &quot;payload&quot;: {
+      &quot;id&quot;: &quot;83d4dd58-cba5-4fb4-881c-f77fc43009d9&quot;
+    }
+  }
+]</code></pre> </section>
+            </div>
+          </div>
+          <div class="doc-row">
+            <div class="doc-copy">
+              <section class="swagger-responses">
+                <div class="prop-row prop-group">
+                  <div class="prop-name">
+                    <div class="prop-title">200 OK</div>
+                    <div class="prop-ref">
+                      <span class="json-schema-ref-array">
+                        <a class="json-schema-ref" href="#/definitions/BatchResponse">BatchResponse</a>
+                      </span>
+                    </div>
+                    <!-- <span class="swagger-global"></span> <span class="json-schema-reference"><a href=""></a></span> -->
+                  </div>
+                  <div class="prop-value">
+                    <p>OK</p>
+                  </div>
+                </div>
+                <div class="prop-row prop-inner">
+                  <div class="prop-name">type</div>
+                  <div class="prop-value">
+                    <span class="json-property-type">
+                      <span class="json-schema-ref-array">
+                        <a class="json-schema-ref" href="#/definitions/BatchResponse">BatchResponse</a>
+                      </span>
+                    </span>
+                    <span class="json-property-range" title="Value limits"></span>
+                  </div>
+                </div>
+              </section>
+            </div>
+            <div class="doc-examples">
+              <h5>Response Content-Types:
+                <span>application/json</span>
+              </h5>
+              <section>
+                <h5>Response Schema
+                  <span>(200 OK)</span>
+                </h5>
+                <!-- <div class="hljs"> --><pre><code class="hljs language-json">[
+  {
+    <span class="hljs-attr">&quot;status&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>,
+    <span class="hljs-attr">&quot;payload&quot;</span>: <span class="hljs-string">&quot;object&quot;</span>
+  }
+]
+</code></pre>
+                <!-- </div> -->
+              </section>
+              <h5>Response Example
+                <span>(200 OK)</span>
+              </h5> <pre><code>[
+  {
+    &quot;status&quot;: 200,
+    &quot;payload&quot;: {
+      &quot;id&quot;: &quot;21b580eb-8d5d-4855-aa11-2013e3884dce&quot;,
+      &quot;marketSymbol&quot;: &quot;BTC-USD&quot;,
+      &quot;direction&quot;: &quot;BUY&quot;,
+      &quot;type&quot;: &quot;LIMIT&quot;,
+      &quot;quantity&quot;: &quot;1&quot;,
+      &quot;limit&quot;: &quot;20000&quot;,
+      &quot;timeInForce&quot;: &quot;GOOD_TIL_CANCELLED&quot;,
+      &quot;fillQuantity&quot;: &quot;0.00000000&quot;,
+      &quot;commission&quot;: &quot;0.00000000&quot;,
+      &quot;proceeds&quot;: &quot;0.00000000&quot;,
+      &quot;status&quot;: &quot;OPEN&quot;,
+      &quot;createdAt&quot;: &quot;2020-12-02T07:19:48.75Z&quot;,
+      &quot;updatedAt&quot;: &quot;2020-12-02T07:19:48.75Z&quot;
+    }
+  },
+  {
+    &quot;status&quot;: 409,
+    &quot;payload&quot;: {
+      &quot;code&quot;: &quot;INSUFFICIENT_FUNDS&quot;
+    }
+  },
+  {
+    &quot;status&quot;: 200,
+    &quot;payload&quot;: {
+      &quot;id&quot;: &quot;83d4dd58-cba5-4fb4-881c-f77fc43009d9&quot;,
+      &quot;marketSymbol&quot;: &quot;BTC-USD&quot;,
+      &quot;direction&quot;: &quot;BUY&quot;,
+      &quot;type&quot;: &quot;LIMIT&quot;,
+      &quot;quantity&quot;: &quot;1.00000000&quot;,
+      &quot;limit&quot;: &quot;19950.00000000&quot;,
+      &quot;timeInForce&quot;: &quot;GOOD_TIL_CANCELLED&quot;,
+      &quot;fillQuantity&quot;: &quot;0.00000000&quot;,
+      &quot;commission&quot;: &quot;0.00000000&quot;,
+      &quot;proceeds&quot;: &quot;0.00000000&quot;,
+      &quot;status&quot;: &quot;CLOSED&quot;,
+      &quot;createdAt&quot;: &quot;2020-12-02T07:19:34.27Z&quot;,
+      &quot;updatedAt&quot;: &quot;2020-12-02T07:19:48.85Z&quot;,
+      &quot;closedAt&quot;: &quot;2020-12-02T07:19:48.85Z&quot;
+    }
+  }
+]
+</code></pre> </div>
           </div>
         </div>
         <h1 id="tag-ConditionalOrders" class="swagger-summary-tag" data-traverse-target="tag-ConditionalOrders">ConditionalOrders</h1>
@@ -1716,7 +2427,7 @@
                 <span>application/json</span>
               </h5>
               <section>
-                <h5>Response Example
+                <h5>Response Schema
                   <span>(200 OK)</span>
                 </h5>
                 <!-- <div class="hljs"> --><pre><code class="hljs language-json">{
@@ -1827,7 +2538,7 @@
                 <span>application/json</span>
               </h5>
               <section>
-                <h5>Response Example
+                <h5>Response Schema
                   <span>(200 OK)</span>
                 </h5>
                 <!-- <div class="hljs"> --><pre><code class="hljs language-json">{
@@ -2019,7 +2730,7 @@
                 <span>application/json</span>
               </h5>
               <section>
-                <h5>Response Example
+                <h5>Response Schema
                   <span>(200 OK)</span>
                 </h5>
                 <!-- <div class="hljs"> --><pre><code class="hljs language-json">[
@@ -2140,7 +2851,7 @@
                 <span>application/json</span>
               </h5>
               <section>
-                <h5>Response Example
+                <h5>Response Schema
                   <span>(200 OK)</span>
                 </h5>
                 <!-- <div class="hljs"> --><pre><code class="hljs language-json">[
@@ -2276,7 +2987,7 @@
                 <h5>Request Content-Types:
                   <span>application/json</span>
                 </h5>
-                <h5>Request Body Example</h5>
+                <h5>Request Body Schema</h5>
                 <!-- <div class="hljs"> --><pre><code class="hljs language-json">{
   <span class="hljs-attr">&quot;marketSymbol&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
   <span class="hljs-attr">&quot;operand&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
@@ -2328,7 +3039,7 @@
                 <span>application/json</span>
               </h5>
               <section>
-                <h5>Response Example
+                <h5>Response Schema
                   <span>(201 Created)</span>
                 </h5>
                 <!-- <div class="hljs"> --><pre><code class="hljs language-json">{
@@ -2431,7 +3142,7 @@
                 <span>application/json</span>
               </h5>
               <section>
-                <h5>Response Example
+                <h5>Response Schema
                   <span>(200 OK)</span>
                 </h5>
                 <!-- <div class="hljs"> --><pre><code class="hljs language-json">[
@@ -2449,6 +3160,9 @@
     ],
     <span class="hljs-attr">&quot;baseAddress&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
     <span class="hljs-attr">&quot;associatedTermsOfService&quot;</span>: [
+      <span class="hljs-string">&quot;string&quot;</span>
+    ],
+    <span class="hljs-attr">&quot;tags&quot;</span>: [
       <span class="hljs-string">&quot;string&quot;</span>
     ]
   }
@@ -2530,7 +3244,7 @@
                 <span>application/json</span>
               </h5>
               <section>
-                <h5>Response Example
+                <h5>Response Schema
                   <span>(200 OK)</span>
                 </h5>
                 <!-- <div class="hljs"> --><pre><code class="hljs language-json">{
@@ -2547,6 +3261,9 @@
   ],
   <span class="hljs-attr">&quot;baseAddress&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
   <span class="hljs-attr">&quot;associatedTermsOfService&quot;</span>: [
+    <span class="hljs-string">&quot;string&quot;</span>
+  ],
+  <span class="hljs-attr">&quot;tags&quot;</span>: [
     <span class="hljs-string">&quot;string&quot;</span>
   ]
 }
@@ -2656,7 +3373,7 @@
                 <span>application/json</span>
               </h5>
               <section>
-                <h5>Response Example
+                <h5>Response Schema
                   <span>(200 OK)</span>
                 </h5>
                 <!-- <div class="hljs"> --><pre><code class="hljs language-json">[
@@ -2903,7 +3620,7 @@
                 <span>application/json</span>
               </h5>
               <section>
-                <h5>Response Example
+                <h5>Response Schema
                   <span>(200 OK)</span>
                 </h5>
                 <!-- <div class="hljs"> --><pre><code class="hljs language-json">[
@@ -3010,7 +3727,7 @@
                 <span>application/json</span>
               </h5>
               <section>
-                <h5>Response Example
+                <h5>Response Schema
                   <span>(200 OK)</span>
                 </h5>
                 <!-- <div class="hljs"> --><pre><code class="hljs language-json">[
@@ -3108,7 +3825,7 @@
                 <span>application/json</span>
               </h5>
               <section>
-                <h5>Response Example
+                <h5>Response Schema
                   <span>(200 OK)</span>
                 </h5>
                 <!-- <div class="hljs"> --><pre><code class="hljs language-json">{
@@ -3127,6 +3844,314 @@
 </code></pre>
                 <!-- </div> -->
               </section>
+            </div>
+          </div>
+        </div>
+        <h1 id="tag-Executions" class="swagger-summary-tag" data-traverse-target="tag-Executions">Executions</h1>
+        <div id="operation--executions-get" class="operation panel" data-traverse-target="operation--executions-get">
+          <!-- <section class="operation-tags row"> -->
+          <!-- <div class="doc-copy"> -->
+          <div class="operation-tags">
+            <a class="label alert" href="#topic-Authentication" title="Requires a properly signed request. Click for more.">Authenticated</a>
+            <a class="label" href="#tag-Executions">Executions</a>
+            <!---->
+          </div>
+          <!-- </div> -->
+          <!-- </section> -->
+          <h2 class="operation-title">
+            <span class="operation-name">
+              <span class="operation-name">GET</span>
+              <span class="operation-path">/executions</span>
+            </span>
+          </h2>
+          <div class="doc-row">
+            <div class="doc-copy">
+              <section class="swagger-operation-description">
+                <p>List historical executions for account.
+                  <br>Pagination and the sort order of the results are in inverse order of the Executed field.</p>
+              </section>
+            </div>
+          </div>
+          <div class="doc-row">
+            <div class="doc-copy">
+              <section class="swagger-request-params">
+                <div class="prop-row prop-group">
+                  <div class="prop-name">
+                    <div class="prop-title">marketSymbol:
+                      <span class="prop-type">
+                        <span class="json-property-type">string</span>
+                        <span class="json-property-range" title="Value limits"></span>
+                      </span>
+                    </div>
+                    <div class="prop-subtitle"> in query </div>
+                  </div>
+                  <div class="prop-value">
+                    <p>filter by market (optional)</p>
+                  </div>
+                </div>
+                <div class="prop-row prop-group">
+                  <div class="prop-name">
+                    <div class="prop-title">nextPageToken:
+                      <span class="prop-type">
+                        <span class="json-property-type">string</span>
+                        <span class="json-property-range" title="Value limits"></span>
+                      </span>
+                    </div>
+                    <div class="prop-subtitle"> in query </div>
+                  </div>
+                  <div class="prop-value">
+                    <p>The unique identifier of the item that the resulting query result should start after, in the sort order of the given endpoint. Used for traversing a paginated set in the forward direction. (Optional. May only be specified if PreviousPageToken is not specified.)</p>
+                  </div>
+                </div>
+                <div class="prop-row prop-group">
+                  <div class="prop-name">
+                    <div class="prop-title">previousPageToken:
+                      <span class="prop-type">
+                        <span class="json-property-type">string</span>
+                        <span class="json-property-range" title="Value limits"></span>
+                      </span>
+                    </div>
+                    <div class="prop-subtitle"> in query </div>
+                  </div>
+                  <div class="prop-value">
+                    <p>The unique identifier of the item that the resulting query result should end before, in the sort order of the given endpoint. Used for traversing a paginated set in the reverse direction. (Optional. May only be specified if NextPageToken is not specified.)</p>
+                  </div>
+                </div>
+                <div class="prop-row prop-group">
+                  <div class="prop-name">
+                    <div class="prop-title">pageSize:
+                      <span class="prop-type">
+                        <span class="json-property-type">integer</span>
+                        <span class="json-property-format">(int32)</span>
+                        <span class="json-property-range" title="Value limits"></span>
+                      </span>
+                    </div>
+                    <div class="prop-subtitle"> in query </div>
+                  </div>
+                  <div class="prop-value">
+                    <p>maximum number of items to retrieve -- default 100, minimum 1, maximum 200 (optional)</p>
+                  </div>
+                </div>
+                <div class="prop-row prop-group">
+                  <div class="prop-name">
+                    <div class="prop-title">startDate:
+                      <span class="prop-type">
+                        <span class="json-property-type">string</span>
+                        <span class="json-property-format">(date-time)</span>
+                        <span class="json-property-range" title="Value limits"></span>
+                      </span>
+                    </div>
+                    <div class="prop-subtitle"> in query </div>
+                  </div>
+                  <div class="prop-value">
+                    <p>(optional) Filters out results before this timestamp. In ISO 8601 format (e.g., &quot;2019-01-02T16:23:45Z&quot;). Precision beyond one second is not supported. Use pagination parameters for more precise filtering.</p>
+                  </div>
+                </div>
+                <div class="prop-row prop-group">
+                  <div class="prop-name">
+                    <div class="prop-title">endDate:
+                      <span class="prop-type">
+                        <span class="json-property-type">string</span>
+                        <span class="json-property-format">(date-time)</span>
+                        <span class="json-property-range" title="Value limits"></span>
+                      </span>
+                    </div>
+                    <div class="prop-subtitle"> in query </div>
+                  </div>
+                  <div class="prop-value">
+                    <p>(optional) Filters out result after this timestamp. Uses the same format as StartDate. Either, both, or neither of StartDate and EndDate can be set. The only constraint on the pair is that, if both are set, then EndDate cannot be before StartDate.</p>
+                  </div>
+                </div>
+              </section>
+            </div>
+            <div class="doc-examples">
+              <section> </section>
+            </div>
+          </div>
+          <div class="doc-row">
+            <div class="doc-copy">
+              <section class="swagger-responses">
+                <div class="prop-row prop-group">
+                  <div class="prop-name">
+                    <div class="prop-title">200 OK</div>
+                    <div class="prop-ref">
+                      <span class="json-schema-ref-array">
+                        <a class="json-schema-ref" href="#/definitions/Execution">Execution</a>
+                      </span>
+                    </div>
+                    <!-- <span class="swagger-global"></span> <span class="json-schema-reference"><a href=""></a></span> -->
+                  </div>
+                  <div class="prop-value">
+                    <p>OK</p>
+                  </div>
+                </div>
+                <div class="prop-row prop-inner">
+                  <div class="prop-name">type</div>
+                  <div class="prop-value">
+                    <span class="json-property-type">
+                      <span class="json-schema-ref-array">
+                        <a class="json-schema-ref" href="#/definitions/Execution">Execution</a>
+                      </span>
+                    </span>
+                    <span class="json-property-range" title="Value limits"></span>
+                  </div>
+                </div>
+              </section>
+            </div>
+            <div class="doc-examples">
+              <h5>Response Content-Types:
+                <span>application/json</span>
+              </h5>
+              <section>
+                <h5>Response Schema
+                  <span>(200 OK)</span>
+                </h5>
+                <!-- <div class="hljs"> --><pre><code class="hljs language-json">[
+  {
+    <span class="hljs-attr">&quot;id&quot;</span>: <span class="hljs-string">&quot;string (uuid)&quot;</span>,
+    <span class="hljs-attr">&quot;marketSymbol&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+    <span class="hljs-attr">&quot;executedAt&quot;</span>: <span class="hljs-string">&quot;string (date-time)&quot;</span>,
+    <span class="hljs-attr">&quot;quantity&quot;</span>: <span class="hljs-string">&quot;number (double)&quot;</span>,
+    <span class="hljs-attr">&quot;rate&quot;</span>: <span class="hljs-string">&quot;number (double)&quot;</span>,
+    <span class="hljs-attr">&quot;orderId&quot;</span>: <span class="hljs-string">&quot;string (uuid)&quot;</span>,
+    <span class="hljs-attr">&quot;commission&quot;</span>: <span class="hljs-string">&quot;number (double)&quot;</span>,
+    <span class="hljs-attr">&quot;isTaker&quot;</span>: <span class="hljs-string">&quot;boolean&quot;</span>
+  }
+]
+</code></pre>
+                <!-- </div> -->
+              </section>
+            </div>
+          </div>
+        </div>
+        <div id="operation--executions-last-id-get" class="operation panel" data-traverse-target="operation--executions-last-id-get">
+          <!-- <section class="operation-tags row"> -->
+          <!-- <div class="doc-copy"> -->
+          <div class="operation-tags">
+            <a class="label alert" href="#topic-Authentication" title="Requires a properly signed request. Click for more.">Authenticated</a>
+            <a class="label" href="#tag-Executions">Executions</a>
+            <!---->
+          </div>
+          <!-- </div> -->
+          <!-- </section> -->
+          <h2 class="operation-title">
+            <span class="operation-name">
+              <span class="operation-name">GET</span>
+              <span class="operation-path">/executions/last-id</span>
+            </span>
+          </h2>
+          <div class="doc-row">
+            <div class="doc-copy">
+              <section class="swagger-operation-description">
+                <p>Gets sequence number and last execution id</p>
+              </section>
+            </div>
+          </div>
+          <div class="doc-row">
+            <div class="doc-copy">
+              <section class="swagger-request-params">
+                <div class="prop-row prop-group">
+                  <div class="prop-name">
+                    <div class="prop-title">marketSymbol:
+                      <span class="prop-type">
+                        <span class="json-property-type">string</span>
+                        <span class="json-property-range" title="Value limits"></span>
+                      </span>
+                    </div>
+                    <div class="prop-subtitle"> in query </div>
+                  </div>
+                  <div class="prop-value">
+                    <p class="no-description">(no description)</p>
+                  </div>
+                </div>
+              </section>
+            </div>
+            <div class="doc-examples">
+              <section> </section>
+            </div>
+          </div>
+          <div class="doc-row">
+            <div class="doc-copy">
+              <section class="swagger-responses">
+                <div class="prop-row prop-group">
+                  <div class="prop-name">
+                    <div class="prop-title">200 OK</div>
+                    <div class="prop-ref">
+                      <span class="">
+                        <a class="json-schema-ref" href="#/definitions/ExecutionLastId">ExecutionLastId</a>
+                      </span>
+                    </div>
+                    <!-- <span class="swagger-global"></span> <span class="json-schema-reference"><a href=""></a></span> -->
+                  </div>
+                  <div class="prop-value">
+                    <p>OK</p>
+                  </div>
+                </div>
+              </section>
+            </div>
+            <div class="doc-examples">
+              <h5>Response Content-Types:
+                <span>application/json</span>
+              </h5>
+              <section>
+                <h5>Response Schema
+                  <span>(200 OK)</span>
+                </h5>
+                <!-- <div class="hljs"> --><pre><code class="hljs language-json">{
+  <span class="hljs-attr">&quot;lastId&quot;</span>: <span class="hljs-string">&quot;string (uuid)&quot;</span>
+}
+</code></pre>
+                <!-- </div> -->
+              </section>
+            </div>
+          </div>
+        </div>
+        <div id="operation--executions-last-id-head" class="operation panel" data-traverse-target="operation--executions-last-id-head">
+          <!-- <section class="operation-tags row"> -->
+          <!-- <div class="doc-copy"> -->
+          <div class="operation-tags">
+            <a class="label alert" href="#topic-Authentication" title="Requires a properly signed request. Click for more.">Authenticated</a>
+            <a class="label" href="#tag-Executions">Executions</a>
+            <!---->
+          </div>
+          <!-- </div> -->
+          <!-- </section> -->
+          <h2 class="operation-title">
+            <span class="operation-name">
+              <span class="operation-name">HEAD</span>
+              <span class="operation-path">/executions/last-id</span>
+            </span>
+          </h2>
+          <div class="doc-row">
+            <div class="doc-copy">
+              <section class="swagger-operation-description">
+                <p>Get sequence number for executions.</p>
+              </section>
+            </div>
+          </div>
+          <div class="doc-row">
+            <div class="doc-copy"> </div>
+            <div class="doc-examples">
+              <section> </section>
+            </div>
+          </div>
+          <div class="doc-row">
+            <div class="doc-copy">
+              <section class="swagger-responses">
+                <div class="prop-row prop-group">
+                  <div class="prop-name">
+                    <div class="prop-title">200 OK</div>
+                  </div>
+                  <div class="prop-value">
+                    <p>OK</p>
+                  </div>
+                </div>
+              </section>
+            </div>
+            <div class="doc-examples">
+              <h5>Response Content-Types:
+                <span>application/json</span>
+              </h5>
             </div>
           </div>
         </div>
@@ -3195,7 +4220,7 @@
                 <span>application/json</span>
               </h5>
               <section>
-                <h5>Response Example
+                <h5>Response Schema
                   <span>(200 OK)</span>
                 </h5>
                 <!-- <div class="hljs"> --><pre><code class="hljs language-json">[
@@ -3212,6 +4237,9 @@
       <span class="hljs-string">&quot;string&quot;</span>
     ],
     <span class="hljs-attr">&quot;associatedTermsOfService&quot;</span>: [
+      <span class="hljs-string">&quot;string&quot;</span>
+    ],
+    <span class="hljs-attr">&quot;tags&quot;</span>: [
       <span class="hljs-string">&quot;string&quot;</span>
     ]
   }
@@ -3286,7 +4314,7 @@
                 <span>application/json</span>
               </h5>
               <section>
-                <h5>Response Example
+                <h5>Response Schema
                   <span>(200 OK)</span>
                 </h5>
                 <!-- <div class="hljs"> --><pre><code class="hljs language-json">[
@@ -3418,7 +4446,7 @@
                 <span>application/json</span>
               </h5>
               <section>
-                <h5>Response Example
+                <h5>Response Schema
                   <span>(200 OK)</span>
                 </h5>
                 <!-- <div class="hljs"> --><pre><code class="hljs language-json">[
@@ -3498,7 +4526,7 @@
                 <span>application/json</span>
               </h5>
               <section>
-                <h5>Response Example
+                <h5>Response Schema
                   <span>(200 OK)</span>
                 </h5>
                 <!-- <div class="hljs"> --><pre><code class="hljs language-json">[
@@ -3586,7 +4614,7 @@
                 <span>application/json</span>
               </h5>
               <section>
-                <h5>Response Example
+                <h5>Response Schema
                   <span>(200 OK)</span>
                 </h5>
                 <!-- <div class="hljs"> --><pre><code class="hljs language-json">{
@@ -3672,7 +4700,7 @@
                 <span>application/json</span>
               </h5>
               <section>
-                <h5>Response Example
+                <h5>Response Schema
                   <span>(200 OK)</span>
                 </h5>
                 <!-- <div class="hljs"> --><pre><code class="hljs language-json">{
@@ -3688,6 +4716,9 @@
     <span class="hljs-string">&quot;string&quot;</span>
   ],
   <span class="hljs-attr">&quot;associatedTermsOfService&quot;</span>: [
+    <span class="hljs-string">&quot;string&quot;</span>
+  ],
+  <span class="hljs-attr">&quot;tags&quot;</span>: [
     <span class="hljs-string">&quot;string&quot;</span>
   ]
 }
@@ -3768,7 +4799,7 @@
                 <span>application/json</span>
               </h5>
               <section>
-                <h5>Response Example
+                <h5>Response Schema
                   <span>(200 OK)</span>
                 </h5>
                 <!-- <div class="hljs"> --><pre><code class="hljs language-json">{
@@ -3872,7 +4903,7 @@
                 <span>application/json</span>
               </h5>
               <section>
-                <h5>Response Example
+                <h5>Response Schema
                   <span>(200 OK)</span>
                 </h5>
                 <!-- <div class="hljs"> --><pre><code class="hljs language-json">{
@@ -4058,7 +5089,7 @@
                 <span>application/json</span>
               </h5>
               <section>
-                <h5>Response Example
+                <h5>Response Schema
                   <span>(200 OK)</span>
                 </h5>
                 <!-- <div class="hljs"> --><pre><code class="hljs language-json">[
@@ -4142,7 +5173,7 @@
             </div>
           </div>
         </div>
-        <div id="operation--markets--marketSymbol--candles--candleInterval--recent-get" class="operation panel" data-traverse-target="operation--markets--marketSymbol--candles--candleInterval--recent-get">
+        <div id="operation--markets--marketSymbol--candles--candleType---candleInterval--recent-get" class="operation panel" data-traverse-target="operation--markets--marketSymbol--candles--candleType---candleInterval--recent-get">
           <!-- <section class="operation-tags row"> -->
           <!-- <div class="doc-copy"> -->
           <div class="operation-tags">
@@ -4154,7 +5185,7 @@
           <h2 class="operation-title">
             <span class="operation-name">
               <span class="operation-name">GET</span>
-              <span class="operation-path">/markets/{marketSymbol}/candles/{candleInterval}/recent</span>
+              <span class="operation-path">/markets/{marketSymbol}/candles/{candleType}/{candleInterval}/recent</span>
             </span>
           </h2>
           <div class="doc-row">
@@ -4203,6 +5234,24 @@
                     <p>desired time interval between candles</p>
                   </div>
                 </div>
+                <div class="prop-row prop-group">
+                  <div class="prop-name">
+                    <div class="prop-title">candleType:
+                      <span class="prop-type">
+                        <span class="json-property-type">string</span>
+                        <span class="json-property-enum" title="Possible values">
+                          <span class="json-property-enum-item">TRADE</span>,
+                          <span class="json-property-enum-item">MIDPOINT</span>
+                        </span>
+                        <span class="json-property-range" title="Value limits"></span>
+                      </span>
+                    </div>
+                    <div class="prop-subtitle"> in path </div>
+                  </div>
+                  <div class="prop-value">
+                    <p>type of candles (trades or midpoint). This portion of the url may be omitted if trade based candles are desired (e.g. /candes/{candleInterval}/recent will return trade based candles)</p>
+                  </div>
+                </div>
               </section>
             </div>
             <div class="doc-examples">
@@ -4244,7 +5293,7 @@
                 <span>application/json</span>
               </h5>
               <section>
-                <h5>Response Example
+                <h5>Response Schema
                   <span>(200 OK)</span>
                 </h5>
                 <!-- <div class="hljs"> --><pre><code class="hljs language-json">[
@@ -4264,7 +5313,7 @@
             </div>
           </div>
         </div>
-        <div id="operation--markets--marketSymbol--candles--candleInterval--recent-head" class="operation panel" data-traverse-target="operation--markets--marketSymbol--candles--candleInterval--recent-head">
+        <div id="operation--markets--marketSymbol--candles--candleType---candleInterval--recent-head" class="operation panel" data-traverse-target="operation--markets--marketSymbol--candles--candleType---candleInterval--recent-head">
           <!-- <section class="operation-tags row"> -->
           <!-- <div class="doc-copy"> -->
           <div class="operation-tags">
@@ -4276,7 +5325,7 @@
           <h2 class="operation-title">
             <span class="operation-name">
               <span class="operation-name">HEAD</span>
-              <span class="operation-path">/markets/{marketSymbol}/candles/{candleInterval}/recent</span>
+              <span class="operation-path">/markets/{marketSymbol}/candles/{candleType}/{candleInterval}/recent</span>
             </span>
           </h2>
           <div class="doc-row">
@@ -4325,6 +5374,24 @@
                     <p>desired time interval between candles</p>
                   </div>
                 </div>
+                <div class="prop-row prop-group">
+                  <div class="prop-name">
+                    <div class="prop-title">candleType:
+                      <span class="prop-type">
+                        <span class="json-property-type">string</span>
+                        <span class="json-property-enum" title="Possible values">
+                          <span class="json-property-enum-item">TRADE</span>,
+                          <span class="json-property-enum-item">MIDPOINT</span>
+                        </span>
+                        <span class="json-property-range" title="Value limits"></span>
+                      </span>
+                    </div>
+                    <div class="prop-subtitle"> in path </div>
+                  </div>
+                  <div class="prop-value">
+                    <p>type of candles (trades or midpoint). This portion of the url may be omitted if trade based candles are desired (e.g. /candes/{candleInterval}/recent will return trade based candles)</p>
+                  </div>
+                </div>
               </section>
             </div>
             <div class="doc-examples">
@@ -4351,7 +5418,7 @@
             </div>
           </div>
         </div>
-        <div id="operation--markets--marketSymbol--candles--candleInterval--historical--year---month---day--get" class="operation panel" data-traverse-target="operation--markets--marketSymbol--candles--candleInterval--historical--year---month---day--get">
+        <div id="operation--markets--marketSymbol--candles--candleType---candleInterval--historical--year---month---day--get" class="operation panel" data-traverse-target="operation--markets--marketSymbol--candles--candleType---candleInterval--historical--year---month---day--get">
           <!-- <section class="operation-tags row"> -->
           <!-- <div class="doc-copy"> -->
           <div class="operation-tags">
@@ -4363,7 +5430,7 @@
           <h2 class="operation-title">
             <span class="operation-name">
               <span class="operation-name">GET</span>
-              <span class="operation-path">/markets/{marketSymbol}/candles/{candleInterval}/historical/{year}/{month}/{day}</span>
+              <span class="operation-path">/markets/{marketSymbol}/candles/{candleType}/{candleInterval}/historical/{year}/{month}/{day}</span>
             </span>
           </h2>
           <div class="doc-row">
@@ -4437,7 +5504,6 @@
                         <span class="json-property-range" title="Value limits"></span>
                       </span>
                     </div>
-                    <span class="json-property-required"></span>
                     <div class="prop-subtitle"> in path </div>
                   </div>
                   <div class="prop-value">
@@ -4453,11 +5519,28 @@
                         <span class="json-property-range" title="Value limits"></span>
                       </span>
                     </div>
-                    <span class="json-property-required"></span>
                     <div class="prop-subtitle"> in path </div>
                   </div>
                   <div class="prop-value">
                     <p>desired day to start from (if applicable)</p>
+                  </div>
+                </div>
+                <div class="prop-row prop-group">
+                  <div class="prop-name">
+                    <div class="prop-title">candleType:
+                      <span class="prop-type">
+                        <span class="json-property-type">string</span>
+                        <span class="json-property-enum" title="Possible values">
+                          <span class="json-property-enum-item">TRADE</span>,
+                          <span class="json-property-enum-item">MIDPOINT</span>
+                        </span>
+                        <span class="json-property-range" title="Value limits"></span>
+                      </span>
+                    </div>
+                    <div class="prop-subtitle"> in path </div>
+                  </div>
+                  <div class="prop-value">
+                    <p>type of candles (trades or midpoint). This portion of the url may be omitted if trade based candles are desired (e.g. /candes/{candleInterval}/historical/{year} will return trade based candles)</p>
                   </div>
                 </div>
               </section>
@@ -4501,7 +5584,7 @@
                 <span>application/json</span>
               </h5>
               <section>
-                <h5>Response Example
+                <h5>Response Schema
                   <span>(200 OK)</span>
                 </h5>
                 <!-- <div class="hljs"> --><pre><code class="hljs language-json">[
@@ -4678,7 +5761,7 @@
                 <span>application/json</span>
               </h5>
               <section>
-                <h5>Response Example
+                <h5>Response Schema
                   <span>(200 OK)</span>
                 </h5>
                 <!-- <div class="hljs"> --><pre><code class="hljs language-json">[
@@ -4793,7 +5876,7 @@
                 <span>application/json</span>
               </h5>
               <section>
-                <h5>Response Example
+                <h5>Response Schema
                   <span>(200 OK)</span>
                 </h5>
                 <!-- <div class="hljs"> --><pre><code class="hljs language-json">[
@@ -4907,7 +5990,7 @@
                 <span>application/json</span>
               </h5>
               <section>
-                <h5>Response Example
+                <h5>Response Schema
                   <span>(200 OK)</span>
                 </h5>
                 <!-- <div class="hljs"> --><pre><code class="hljs language-json">[
@@ -5067,7 +6150,7 @@
                 <span>application/json</span>
               </h5>
               <section>
-                <h5>Response Example
+                <h5>Response Schema
                   <span>(200 OK)</span>
                 </h5>
                 <!-- <div class="hljs"> --><pre><code class="hljs language-json">{
@@ -5172,7 +6255,7 @@
                 <span>application/json</span>
               </h5>
               <section>
-                <h5>Response Example
+                <h5>Response Schema
                   <span>(200 OK)</span>
                 </h5>
                 <!-- <div class="hljs"> --><pre><code class="hljs language-json">{
@@ -5287,7 +6370,7 @@
                 <span>application/json</span>
               </h5>
               <section>
-                <h5>Response Example
+                <h5>Response Schema
                   <span>(200 OK)</span>
                 </h5>
                 <!-- <div class="hljs"> --><pre><code class="hljs language-json">[
@@ -5356,7 +6439,7 @@
                 <h5>Request Content-Types:
                   <span>application/json</span>
                 </h5>
-                <h5>Request Body Example</h5>
+                <h5>Request Body Schema</h5>
                 <!-- <div class="hljs"> --><pre><code class="hljs language-json">{
   <span class="hljs-attr">&quot;marketSymbol&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
   <span class="hljs-attr">&quot;direction&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
@@ -5397,7 +6480,7 @@
                 <span>application/json</span>
               </h5>
               <section>
-                <h5>Response Example
+                <h5>Response Schema
                   <span>(201 Created)</span>
                 </h5>
                 <!-- <div class="hljs"> --><pre><code class="hljs language-json">{
@@ -5482,7 +6565,7 @@
                 <span>application/json</span>
               </h5>
               <section>
-                <h5>Response Example
+                <h5>Response Schema
                   <span>(200 OK)</span>
                 </h5>
                 <!-- <div class="hljs"> --><pre><code class="hljs language-json">{
@@ -5607,7 +6690,7 @@
                 <span>application/json</span>
               </h5>
               <section>
-                <h5>Response Example
+                <h5>Response Schema
                   <span>(200 OK)</span>
                 </h5>
                 <!-- <div class="hljs"> --><pre><code class="hljs language-json">[
@@ -5672,7 +6755,7 @@
                 <h5>Request Content-Types:
                   <span>application/json</span>
                 </h5>
-                <h5>Request Body Example</h5>
+                <h5>Request Body Schema</h5>
                 <!-- <div class="hljs"> --><pre><code class="hljs language-json">{}
 </code></pre>
                 <!-- </div> -->
@@ -5703,7 +6786,7 @@
                 <span>application/json</span>
               </h5>
               <section>
-                <h5>Response Example
+                <h5>Response Schema
                   <span>(201 Created)</span>
                 </h5>
                 <!-- <div class="hljs"> --><pre><code class="hljs language-json">{
@@ -5792,7 +6875,7 @@
                 <span>application/json</span>
               </h5>
               <section>
-                <h5>Response Example
+                <h5>Response Schema
                   <span>(200 OK)</span>
                 </h5>
                 <!-- <div class="hljs"> --><pre><code class="hljs language-json">{
@@ -5991,7 +7074,7 @@
                 <span>application/json</span>
               </h5>
               <section>
-                <h5>Response Example
+                <h5>Response Schema
                   <span>(200 OK)</span>
                 </h5>
                 <!-- <div class="hljs"> --><pre><code class="hljs language-json">[
@@ -6196,7 +7279,7 @@
                 <span>application/json</span>
               </h5>
               <section>
-                <h5>Response Example
+                <h5>Response Schema
                   <span>(200 OK)</span>
                 </h5>
                 <!-- <div class="hljs"> --><pre><code class="hljs language-json">[
@@ -6290,7 +7373,7 @@
                 <span>application/json</span>
               </h5>
               <section>
-                <h5>Response Example
+                <h5>Response Schema
                   <span>(200 OK)</span>
                 </h5>
                 <!-- <div class="hljs"> --><pre><code class="hljs language-json">{
@@ -6356,7 +7439,7 @@
                 <h5>Request Content-Types:
                   <span>application/json</span>
                 </h5>
-                <h5>Request Body Example</h5>
+                <h5>Request Body Schema</h5>
                 <!-- <div class="hljs"> --><pre><code class="hljs language-json">{
   <span class="hljs-attr">&quot;toSubaccountId&quot;</span>: <span class="hljs-string">&quot;string (uuid)&quot;</span>,
   <span class="hljs-attr">&quot;requestId&quot;</span>: <span class="hljs-string">&quot;string (uuid)&quot;</span>,
@@ -6393,7 +7476,7 @@
                 <span>application/json</span>
               </h5>
               <section>
-                <h5>Response Example
+                <h5>Response Schema
                   <span>(201 Created)</span>
                 </h5>
                 <!-- <div class="hljs"> --><pre><code class="hljs language-json">{
@@ -6512,7 +7595,7 @@
                 <span>application/json</span>
               </h5>
               <section>
-                <h5>Response Example
+                <h5>Response Schema
                   <span>(200 OK)</span>
                 </h5>
                 <!-- <div class="hljs"> --><pre><code class="hljs language-json">[
@@ -6709,7 +7792,7 @@
                 <span>application/json</span>
               </h5>
               <section>
-                <h5>Response Example
+                <h5>Response Schema
                   <span>(200 OK)</span>
                 </h5>
                 <!-- <div class="hljs"> --><pre><code class="hljs language-json">[
@@ -6816,7 +7899,7 @@
                 <span>application/json</span>
               </h5>
               <section>
-                <h5>Response Example
+                <h5>Response Schema
                   <span>(200 OK)</span>
                 </h5>
                 <!-- <div class="hljs"> --><pre><code class="hljs language-json">[
@@ -6914,7 +7997,7 @@
                 <span>application/json</span>
               </h5>
               <section>
-                <h5>Response Example
+                <h5>Response Schema
                   <span>(200 OK)</span>
                 </h5>
                 <!-- <div class="hljs"> --><pre><code class="hljs language-json">{
@@ -7010,7 +8093,7 @@
                 <span>application/json</span>
               </h5>
               <section>
-                <h5>Response Example
+                <h5>Response Schema
                   <span>(200 OK)</span>
                 </h5>
                 <!-- <div class="hljs"> --><pre><code class="hljs language-json">{
@@ -7080,7 +8163,7 @@
                 <h5>Request Content-Types:
                   <span>application/json</span>
                 </h5>
-                <h5>Request Body Example</h5>
+                <h5>Request Body Schema</h5>
                 <!-- <div class="hljs"> --><pre><code class="hljs language-json">{
   <span class="hljs-attr">&quot;currencySymbol&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
   <span class="hljs-attr">&quot;quantity&quot;</span>: <span class="hljs-string">&quot;number (double)&quot;</span>,
@@ -7117,7 +8200,7 @@
                 <span>application/json</span>
               </h5>
               <section>
-                <h5>Response Example
+                <h5>Response Schema
                   <span>(201 Created)</span>
                 </h5>
                 <!-- <div class="hljs"> --><pre><code class="hljs language-json">{
@@ -7139,7 +8222,7 @@
             </div>
           </div>
         </div>
-        <div id="operation--withdrawals-whitelistAddresses-get" class="operation panel" data-traverse-target="operation--withdrawals-whitelistAddresses-get">
+        <div id="operation--withdrawals-allowed-addresses-get" class="operation panel" data-traverse-target="operation--withdrawals-allowed-addresses-get">
           <!-- <section class="operation-tags row"> -->
           <!-- <div class="doc-copy"> -->
           <div class="operation-tags">
@@ -7152,13 +8235,13 @@
           <h2 class="operation-title">
             <span class="operation-name">
               <span class="operation-name">GET</span>
-              <span class="operation-path">/withdrawals/whitelistAddresses</span>
+              <span class="operation-path">/withdrawals/allowed-addresses</span>
             </span>
           </h2>
           <div class="doc-row">
             <div class="doc-copy">
               <section class="swagger-operation-description">
-                <p>Returns a list of white listed addresses.</p>
+                <p>Returns a list of allowed addresses.</p>
               </section>
             </div>
           </div>
@@ -7176,7 +8259,7 @@
                     <div class="prop-title">200 OK</div>
                     <div class="prop-ref">
                       <span class="">
-                        <a class="json-schema-ref" href="#/definitions/WhiteListAddress">WhiteListAddress</a>
+                        <a class="json-schema-ref" href="#/definitions/AllowedAddress">AllowedAddress</a>
                       </span>
                     </div>
                     <!-- <span class="swagger-global"></span> <span class="json-schema-reference"><a href=""></a></span> -->
@@ -7192,7 +8275,7 @@
                 <span>application/json</span>
               </h5>
               <section>
-                <h5>Response Example
+                <h5>Response Schema
                   <span>(200 OK)</span>
                 </h5>
                 <!-- <div class="hljs"> --><pre><code class="hljs language-json">{
@@ -7840,6 +8923,98 @@
     <span class="hljs-attr">&quot;status&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
     <span class="hljs-attr">&quot;source&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
   }
+}
+</code></pre>
+                <!-- </div> -->
+              </section>
+            </div>
+          </div>
+          <div class="doc-row">
+            <div class="doc-copy"> </div>
+            <div class="doc-examples">
+              <section> </section>
+            </div>
+          </div>
+        </div>
+        <div id="method-Execution" class="operation panel" data-traverse-target="method-Execution">
+          <h2 class="operation-title">
+            <span class="operation-name">
+              <span class="operation-path">Execution</span>
+            </span>
+          </h2>
+          <div class="doc-row">
+            <div class="doc-copy">
+              <section class="swagger-operation-description">
+                <p>Sends a message when one of the user&#39;s orders is completely or partially filled by a trade</p>
+                <table>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <b>Subscription&nbsp;name</b>
+                      </td>
+                      <td>
+                        <p>execution</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <b>Message&nbsp;name</b>
+                      </td>
+                      <td>
+                        <p>execution</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <b>Unique&nbsp;key</b>
+                      </td>
+                      <td>
+                        <p>id</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <b>Snapshot&nbsp;from</b>
+                      </td>
+                      <td>
+                        <p>
+                          <a href="#operation--executions-last-id-get">GET /executions/last-id</a>
+                        </p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <b>Subaccount&nbsp;stream</b>
+                      </td>
+                      <td>
+                        <p>subaccounts_execution</p>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <p>The
+                  <a href="#operation--executions-last-id-get">GET /executions/last-id</a> request returns the current sequence number and the id of the most recent execution. If that id is not in your local cache, then use
+                  <a href="#operation--executions-get">GET /executions</a> to fill in any executions that you missed. Executions are immutable so any information received about a given execution from REST or the socket will be its final state.</p>
+              </section>
+            </div>
+            <div class="doc-examples">
+              <section>
+                <h5>Message schema</h5>
+                <!-- <div class="hljs"> --><pre><code class="hljs language-json">{
+  <span class="hljs-attr">&quot;accountId&quot;</span>: <span class="hljs-string">&quot;string (uuid)&quot;</span>,
+  <span class="hljs-attr">&quot;sequence&quot;</span>: <span class="hljs-string">&quot;int&quot;</span>,
+  <span class="hljs-attr">&quot;deltas&quot;</span>: [
+    {
+      <span class="hljs-attr">&quot;id&quot;</span>: <span class="hljs-string">&quot;string (uuid)&quot;</span>,
+      <span class="hljs-attr">&quot;marketSymbol&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+      <span class="hljs-attr">&quot;executedAt&quot;</span>: <span class="hljs-string">&quot;string (date-time)&quot;</span>,
+      <span class="hljs-attr">&quot;quantity&quot;</span>: <span class="hljs-string">&quot;number (double)&quot;</span>,
+      <span class="hljs-attr">&quot;rate&quot;</span>: <span class="hljs-string">&quot;number (double)&quot;</span>,
+      <span class="hljs-attr">&quot;orderId&quot;</span>: <span class="hljs-string">&quot;string (uuid)&quot;</span>,
+      <span class="hljs-attr">&quot;commission&quot;</span>: <span class="hljs-string">&quot;number (double)&quot;</span>,
+      <span class="hljs-attr">&quot;isTaker&quot;</span>: <span class="hljs-string">&quot;boolean&quot;</span>
+    }
+  ]
 }
 </code></pre>
                 <!-- </div> -->
@@ -8652,6 +9827,222 @@
             </div>
           </div>
         </div>
+        <div id="definition-MarketPolicy" class="definition panel" data-traverse-target="definition-MarketPolicy">
+          <h2 class="panel-title">
+            <a name="/definitions/MarketPolicy"></a>MarketPolicy </h2>
+          <div class="doc-row">
+            <div class="doc-copy">
+              <section class="json-schema-properties">
+                <dl>
+                  <dt data-property-name="symbol" class="has-description">
+                    <span class="json-property-name">symbol:</span>
+                    <span class="json-property-type">string</span>
+                    <span class="json-property-range" title="Value limits"></span>
+                  </dt>
+                  <dd>
+                    <p>unique ID for the market this policy is associated with</p>
+                  </dd>
+                  <dt data-property-name="view" class="has-description">
+                    <span class="json-property-name">view:</span>
+                    <span class="json-property-type">boolean</span>
+                    <span class="json-property-range" title="Value limits"></span>
+                  </dt>
+                  <dd>
+                    <p>true if the current user should be shown information about this market</p>
+                  </dd>
+                  <dt data-property-name="buy" class="has-description">
+                    <span class="json-property-name">buy:</span>
+                    <span class="json-property-type">boolean</span>
+                    <span class="json-property-range" title="Value limits"></span>
+                  </dt>
+                  <dd>
+                    <p>true if the current user can place buy orders on this market</p>
+                  </dd>
+                  <dt data-property-name="sell" class="has-description">
+                    <span class="json-property-name">sell:</span>
+                    <span class="json-property-type">boolean</span>
+                    <span class="json-property-range" title="Value limits"></span>
+                  </dt>
+                  <dd>
+                    <p>true if the current user can place sell orders on this market</p>
+                  </dd>
+                </dl>
+              </section>
+            </div>
+            <div class="doc-examples">
+              <section>
+                <h5>Example</h5>
+                <!-- <div class="hljs"> --><pre><code class="hljs language-json">{
+  <span class="hljs-attr">&quot;symbol&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+  <span class="hljs-attr">&quot;view&quot;</span>: <span class="hljs-string">&quot;boolean&quot;</span>,
+  <span class="hljs-attr">&quot;buy&quot;</span>: <span class="hljs-string">&quot;boolean&quot;</span>,
+  <span class="hljs-attr">&quot;sell&quot;</span>: <span class="hljs-string">&quot;boolean&quot;</span>
+}
+</code></pre>
+                <!-- </div> -->
+              </section>
+            </div>
+          </div>
+        </div>
+        <div id="definition-CurrencyPolicy" class="definition panel" data-traverse-target="definition-CurrencyPolicy">
+          <h2 class="panel-title">
+            <a name="/definitions/CurrencyPolicy"></a>CurrencyPolicy </h2>
+          <div class="doc-row">
+            <div class="doc-copy">
+              <section class="json-schema-properties">
+                <dl>
+                  <dt data-property-name="symbol" class="has-description">
+                    <span class="json-property-name">symbol:</span>
+                    <span class="json-property-type">string</span>
+                    <span class="json-property-range" title="Value limits"></span>
+                  </dt>
+                  <dd>
+                    <p>unique ID for the currency this policy is associated with</p>
+                  </dd>
+                  <dt data-property-name="view" class="has-description">
+                    <span class="json-property-name">view:</span>
+                    <span class="json-property-type">boolean</span>
+                    <span class="json-property-range" title="Value limits"></span>
+                  </dt>
+                  <dd>
+                    <p>true if the current user should be shown information about this currency</p>
+                  </dd>
+                  <dt data-property-name="deposit" class="has-description">
+                    <span class="json-property-name">deposit:</span>
+                    <span class="json-property-type">
+                      <span class="">
+                        <a class="json-schema-ref" href="#/definitions/DepositMethods">DepositMethods</a>
+                      </span>
+                    </span>
+                    <span class="json-property-range" title="Value limits"></span>
+                  </dt>
+                  <dd>
+                    <p>methods for depositing this currency</p>
+                  </dd>
+                  <dt data-property-name="withdraw" class="has-description">
+                    <span class="json-property-name">withdraw:</span>
+                    <span class="json-property-type">
+                      <span class="">
+                        <a class="json-schema-ref" href="#/definitions/WithdrawMethods">WithdrawMethods</a>
+                      </span>
+                    </span>
+                    <span class="json-property-range" title="Value limits"></span>
+                  </dt>
+                  <dd>
+                    <p>methods for withdrawing this currency</p>
+                  </dd>
+                </dl>
+              </section>
+            </div>
+            <div class="doc-examples">
+              <section>
+                <h5>Example</h5>
+                <!-- <div class="hljs"> --><pre><code class="hljs language-json">{
+  <span class="hljs-attr">&quot;symbol&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+  <span class="hljs-attr">&quot;view&quot;</span>: <span class="hljs-string">&quot;boolean&quot;</span>,
+  <span class="hljs-attr">&quot;deposit&quot;</span>: {
+    <span class="hljs-attr">&quot;blockchain&quot;</span>: <span class="hljs-string">&quot;boolean&quot;</span>,
+    <span class="hljs-attr">&quot;creditCard&quot;</span>: <span class="hljs-string">&quot;boolean&quot;</span>,
+    <span class="hljs-attr">&quot;wireTransfer&quot;</span>: <span class="hljs-string">&quot;boolean&quot;</span>
+  },
+  <span class="hljs-attr">&quot;withdraw&quot;</span>: {
+    <span class="hljs-attr">&quot;blockchain&quot;</span>: <span class="hljs-string">&quot;boolean&quot;</span>,
+    <span class="hljs-attr">&quot;wireTransfer&quot;</span>: <span class="hljs-string">&quot;boolean&quot;</span>
+  }
+}
+</code></pre>
+                <!-- </div> -->
+              </section>
+            </div>
+          </div>
+        </div>
+        <div id="definition-DepositMethods" class="definition panel" data-traverse-target="definition-DepositMethods">
+          <h2 class="panel-title">
+            <a name="/definitions/DepositMethods"></a>DepositMethods </h2>
+          <div class="doc-row">
+            <div class="doc-copy">
+              <section class="json-schema-properties">
+                <dl>
+                  <dt data-property-name="blockchain" class="has-description">
+                    <span class="json-property-name">blockchain:</span>
+                    <span class="json-property-type">boolean</span>
+                    <span class="json-property-range" title="Value limits"></span>
+                  </dt>
+                  <dd>
+                    <p>true if the current user can deposit this currency via blockchain transaction</p>
+                  </dd>
+                  <dt data-property-name="creditCard" class="has-description">
+                    <span class="json-property-name">creditCard:</span>
+                    <span class="json-property-type">boolean</span>
+                    <span class="json-property-range" title="Value limits"></span>
+                  </dt>
+                  <dd>
+                    <p>true if the current user can deposit this currency via credit card</p>
+                  </dd>
+                  <dt data-property-name="wireTransfer" class="has-description">
+                    <span class="json-property-name">wireTransfer:</span>
+                    <span class="json-property-type">boolean</span>
+                    <span class="json-property-range" title="Value limits"></span>
+                  </dt>
+                  <dd>
+                    <p>true if the current user can deposit this currency via wire transfer</p>
+                  </dd>
+                </dl>
+              </section>
+            </div>
+            <div class="doc-examples">
+              <section>
+                <h5>Example</h5>
+                <!-- <div class="hljs"> --><pre><code class="hljs language-json">{
+  <span class="hljs-attr">&quot;blockchain&quot;</span>: <span class="hljs-string">&quot;boolean&quot;</span>,
+  <span class="hljs-attr">&quot;creditCard&quot;</span>: <span class="hljs-string">&quot;boolean&quot;</span>,
+  <span class="hljs-attr">&quot;wireTransfer&quot;</span>: <span class="hljs-string">&quot;boolean&quot;</span>
+}
+</code></pre>
+                <!-- </div> -->
+              </section>
+            </div>
+          </div>
+        </div>
+        <div id="definition-WithdrawMethods" class="definition panel" data-traverse-target="definition-WithdrawMethods">
+          <h2 class="panel-title">
+            <a name="/definitions/WithdrawMethods"></a>WithdrawMethods </h2>
+          <div class="doc-row">
+            <div class="doc-copy">
+              <section class="json-schema-properties">
+                <dl>
+                  <dt data-property-name="blockchain" class="has-description">
+                    <span class="json-property-name">blockchain:</span>
+                    <span class="json-property-type">boolean</span>
+                    <span class="json-property-range" title="Value limits"></span>
+                  </dt>
+                  <dd>
+                    <p>true if the current user can withdraw this currency via blockchain transaction</p>
+                  </dd>
+                  <dt data-property-name="wireTransfer" class="has-description">
+                    <span class="json-property-name">wireTransfer:</span>
+                    <span class="json-property-type">boolean</span>
+                    <span class="json-property-range" title="Value limits"></span>
+                  </dt>
+                  <dd>
+                    <p>true if the current user can withdraw this currency via wire transfer</p>
+                  </dd>
+                </dl>
+              </section>
+            </div>
+            <div class="doc-examples">
+              <section>
+                <h5>Example</h5>
+                <!-- <div class="hljs"> --><pre><code class="hljs language-json">{
+  <span class="hljs-attr">&quot;blockchain&quot;</span>: <span class="hljs-string">&quot;boolean&quot;</span>,
+  <span class="hljs-attr">&quot;wireTransfer&quot;</span>: <span class="hljs-string">&quot;boolean&quot;</span>
+}
+</code></pre>
+                <!-- </div> -->
+              </section>
+            </div>
+          </div>
+        </div>
         <div id="definition-Address" class="definition panel" data-traverse-target="definition-Address">
           <h2 class="panel-title">
             <a name="/definitions/Address"></a>Address </h2>
@@ -8803,6 +10194,112 @@
   <span class="hljs-attr">&quot;total&quot;</span>: <span class="hljs-string">&quot;number (double)&quot;</span>,
   <span class="hljs-attr">&quot;available&quot;</span>: <span class="hljs-string">&quot;number (double)&quot;</span>,
   <span class="hljs-attr">&quot;updatedAt&quot;</span>: <span class="hljs-string">&quot;string (date-time)&quot;</span>
+}
+</code></pre>
+                <!-- </div> -->
+              </section>
+            </div>
+          </div>
+        </div>
+        <div id="definition-BatchOperation" class="definition panel" data-traverse-target="definition-BatchOperation">
+          <h2 class="panel-title">
+            <a name="/definitions/BatchOperation"></a>BatchOperation </h2>
+          <div class="doc-row">
+            <div class="doc-copy">
+              <section class="json-schema-description">
+                <p>Base class for Batch operation request</p>
+              </section>
+              <section class="json-schema-properties">
+                <dl>
+                  <dt data-property-name="resource" class="has-description">
+                    <span class="json-property-name">resource:</span>
+                    <span class="json-property-type">string</span>
+                    <span class="json-property-enum" title="Possible values">
+                      <span class="json-property-enum-item">ORDER</span>
+                    </span>
+                    <span class="json-property-range" title="Value limits"></span>
+                    <span class="json-property-required"></span>
+                  </dt>
+                  <dd>
+                    <p>resource type for batch operation</p>
+                  </dd>
+                  <dt data-property-name="operation" class="has-description">
+                    <span class="json-property-name">operation:</span>
+                    <span class="json-property-type">string</span>
+                    <span class="json-property-enum" title="Possible values">
+                      <span class="json-property-enum-item">DELETE</span>,
+                      <span class="json-property-enum-item">POST</span>
+                    </span>
+                    <span class="json-property-range" title="Value limits"></span>
+                    <span class="json-property-required"></span>
+                  </dt>
+                  <dd>
+                    <p>batch operation type</p>
+                  </dd>
+                  <dt data-property-name="payload" class="has-description">
+                    <span class="json-property-name">payload:</span>
+                    <span class="json-property-type">object</span>
+                    <span class="json-property-range" title="Value limits"></span>
+                    <span class="json-property-required"></span>
+                  </dt>
+                  <dd>
+                    <p>Details for this operation. Type varies depending on the resource and operation. For POST order see NewOrder. For DELETE order see DeleteOrder</p>
+                  </dd>
+                </dl>
+              </section>
+            </div>
+            <div class="doc-examples">
+              <section>
+                <h5>Example</h5>
+                <!-- <div class="hljs"> --><pre><code class="hljs language-json">{
+  <span class="hljs-attr">&quot;resource&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+  <span class="hljs-attr">&quot;operation&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+  <span class="hljs-attr">&quot;payload&quot;</span>: <span class="hljs-string">&quot;object&quot;</span>
+}
+</code></pre>
+                <!-- </div> -->
+              </section>
+            </div>
+          </div>
+        </div>
+        <div id="definition-BatchResponse" class="definition panel" data-traverse-target="definition-BatchResponse">
+          <h2 class="panel-title">
+            <a name="/definitions/BatchResponse"></a>BatchResponse </h2>
+          <div class="doc-row">
+            <div class="doc-copy">
+              <section class="json-schema-description">
+                <p>Base class for batch response</p>
+              </section>
+              <section class="json-schema-properties">
+                <dl>
+                  <dt data-property-name="status" class="has-description">
+                    <span class="json-property-name">status:</span>
+                    <span class="json-property-type">integer</span>
+                    <span class="json-property-format">(int32)</span>
+                    <span class="json-property-range" title="Value limits"></span>
+                    <span class="json-property-required"></span>
+                  </dt>
+                  <dd>
+                    <p>status code of this batch operation</p>
+                  </dd>
+                  <dt data-property-name="payload" class="has-description">
+                    <span class="json-property-name">payload:</span>
+                    <span class="json-property-type">object</span>
+                    <span class="json-property-range" title="Value limits"></span>
+                    <span class="json-property-required"></span>
+                  </dt>
+                  <dd>
+                    <p>Detailed results for this operation. Type varies depending on the resource, operation, and whether it was successful. Currently this will be either an Order or an Error</p>
+                  </dd>
+                </dl>
+              </section>
+            </div>
+            <div class="doc-examples">
+              <section>
+                <h5>Example</h5>
+                <!-- <div class="hljs"> --><pre><code class="hljs language-json">{
+  <span class="hljs-attr">&quot;status&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>,
+  <span class="hljs-attr">&quot;payload&quot;</span>: <span class="hljs-string">&quot;object&quot;</span>
 }
 </code></pre>
                 <!-- </div> -->
@@ -9080,7 +10577,8 @@
                       <span class="json-property-enum-item">IMMEDIATE_OR_CANCEL</span>,
                       <span class="json-property-enum-item">FILL_OR_KILL</span>,
                       <span class="json-property-enum-item">POST_ONLY_GOOD_TIL_CANCELLED</span>,
-                      <span class="json-property-enum-item">BUY_NOW</span>
+                      <span class="json-property-enum-item">BUY_NOW</span>,
+                      <span class="json-property-enum-item">INSTANT</span>
                     </span>
                     <span class="json-property-range" title="Value limits"></span>
                     <span class="json-property-required"></span>
@@ -9460,7 +10958,7 @@
                     <span class="json-property-range" title="Value limits"></span>
                   </dt>
                   <dd>
-                    <p>list of prohibited regions. empty if its not restricted.</p>
+                    <p>list of prohibited regions. empty if its not restricted. NOTE: Currently this field only indicates if the currency is prohibited in the US. We recommend using the account/permissions/currencies endpoint instead.</p>
                   </dd>
                   <dt class="json-inner-schema">
                     <section class="json-schema-array-items">
@@ -9495,6 +10993,21 @@
                       <div class="json-inner-schema"> </div>
                     </section>
                   </dt>
+                  <dt data-property-name="tags" class="has-description">
+                    <span class="json-property-name">tags:</span>
+                    <span class="json-property-type">string[]</span>
+                    <span class="json-property-range" title="Value limits"></span>
+                  </dt>
+                  <dd>
+                    <p>metadata tags for this currency</p>
+                  </dd>
+                  <dt class="json-inner-schema">
+                    <section class="json-schema-array-items">
+                      <span class="json-property-type">string</span>
+                      <span class="json-property-range" title="Value limits"></span>
+                      <div class="json-inner-schema"> </div>
+                    </section>
+                  </dt>
                 </dl>
               </section>
             </div>
@@ -9515,6 +11028,9 @@
   ],
   <span class="hljs-attr">&quot;baseAddress&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
   <span class="hljs-attr">&quot;associatedTermsOfService&quot;</span>: [
+    <span class="hljs-string">&quot;string&quot;</span>
+  ],
+  <span class="hljs-attr">&quot;tags&quot;</span>: [
     <span class="hljs-string">&quot;string&quot;</span>
   ]
 }
@@ -9667,6 +11183,144 @@
             </div>
           </div>
         </div>
+        <div id="definition-Execution" class="definition panel" data-traverse-target="definition-Execution">
+          <h2 class="panel-title">
+            <a name="/definitions/Execution"></a>Execution </h2>
+          <div class="doc-row">
+            <div class="doc-copy">
+              <section class="json-schema-properties">
+                <dl>
+                  <dt data-property-name="id" class="has-description">
+                    <span class="json-property-name">id:</span>
+                    <span class="json-property-type">string</span>
+                    <span class="json-property-format">(uuid)</span>
+                    <span class="json-property-range" title="Value limits"></span>
+                    <span class="json-property-required"></span>
+                  </dt>
+                  <dd>
+                    <p>unique ID of this execution, assigned by the service</p>
+                  </dd>
+                  <dt data-property-name="marketSymbol" class="has-description">
+                    <span class="json-property-name">marketSymbol:</span>
+                    <span class="json-property-type">string</span>
+                    <span class="json-property-range" title="Value limits"></span>
+                    <span class="json-property-required"></span>
+                  </dt>
+                  <dd>
+                    <p>market symbol where this execution took place</p>
+                  </dd>
+                  <dt data-property-name="executedAt" class="has-description">
+                    <span class="json-property-name">executedAt:</span>
+                    <span class="json-property-type">string</span>
+                    <span class="json-property-format">(date-time)</span>
+                    <span class="json-property-range" title="Value limits"></span>
+                    <span class="json-property-required"></span>
+                  </dt>
+                  <dd>
+                    <p>time when the execution was processed</p>
+                  </dd>
+                  <dt data-property-name="quantity" class="has-description">
+                    <span class="json-property-name">quantity:</span>
+                    <span class="json-property-type">number</span>
+                    <span class="json-property-format">(double)</span>
+                    <span class="json-property-range" title="Value limits"></span>
+                    <span class="json-property-required"></span>
+                  </dt>
+                  <dd>
+                    <p>quantity traded during this execution</p>
+                  </dd>
+                  <dt data-property-name="rate" class="has-description">
+                    <span class="json-property-name">rate:</span>
+                    <span class="json-property-type">number</span>
+                    <span class="json-property-format">(double)</span>
+                    <span class="json-property-range" title="Value limits"></span>
+                    <span class="json-property-required"></span>
+                  </dt>
+                  <dd>
+                    <p>rate at which this trade was executed</p>
+                  </dd>
+                  <dt data-property-name="orderId" class="has-description">
+                    <span class="json-property-name">orderId:</span>
+                    <span class="json-property-type">string</span>
+                    <span class="json-property-format">(uuid)</span>
+                    <span class="json-property-range" title="Value limits"></span>
+                    <span class="json-property-required"></span>
+                  </dt>
+                  <dd>
+                    <p>order ID associated with this execution</p>
+                  </dd>
+                  <dt data-property-name="commission" class="has-description">
+                    <span class="json-property-name">commission:</span>
+                    <span class="json-property-type">number</span>
+                    <span class="json-property-format">(double)</span>
+                    <span class="json-property-range" title="Value limits"></span>
+                    <span class="json-property-required"></span>
+                  </dt>
+                  <dd>
+                    <p>commission charged for this execution</p>
+                  </dd>
+                  <dt data-property-name="isTaker" class="has-description">
+                    <span class="json-property-name">isTaker:</span>
+                    <span class="json-property-type">boolean</span>
+                    <span class="json-property-range" title="Value limits"></span>
+                    <span class="json-property-required"></span>
+                  </dt>
+                  <dd>
+                    <p>true if the order ID specified was the taker for this execution, otherwise false</p>
+                  </dd>
+                </dl>
+              </section>
+            </div>
+            <div class="doc-examples">
+              <section>
+                <h5>Example</h5>
+                <!-- <div class="hljs"> --><pre><code class="hljs language-json">{
+  <span class="hljs-attr">&quot;id&quot;</span>: <span class="hljs-string">&quot;string (uuid)&quot;</span>,
+  <span class="hljs-attr">&quot;marketSymbol&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+  <span class="hljs-attr">&quot;executedAt&quot;</span>: <span class="hljs-string">&quot;string (date-time)&quot;</span>,
+  <span class="hljs-attr">&quot;quantity&quot;</span>: <span class="hljs-string">&quot;number (double)&quot;</span>,
+  <span class="hljs-attr">&quot;rate&quot;</span>: <span class="hljs-string">&quot;number (double)&quot;</span>,
+  <span class="hljs-attr">&quot;orderId&quot;</span>: <span class="hljs-string">&quot;string (uuid)&quot;</span>,
+  <span class="hljs-attr">&quot;commission&quot;</span>: <span class="hljs-string">&quot;number (double)&quot;</span>,
+  <span class="hljs-attr">&quot;isTaker&quot;</span>: <span class="hljs-string">&quot;boolean&quot;</span>
+}
+</code></pre>
+                <!-- </div> -->
+              </section>
+            </div>
+          </div>
+        </div>
+        <div id="definition-ExecutionLastId" class="definition panel" data-traverse-target="definition-ExecutionLastId">
+          <h2 class="panel-title">
+            <a name="/definitions/ExecutionLastId"></a>ExecutionLastId </h2>
+          <div class="doc-row">
+            <div class="doc-copy">
+              <section class="json-schema-properties">
+                <dl>
+                  <dt data-property-name="lastId" class="has-description">
+                    <span class="json-property-name">lastId:</span>
+                    <span class="json-property-type">string</span>
+                    <span class="json-property-format">(uuid)</span>
+                    <span class="json-property-range" title="Value limits"></span>
+                  </dt>
+                  <dd>
+                    <p>last lot id for the user</p>
+                  </dd>
+                </dl>
+              </section>
+            </div>
+            <div class="doc-examples">
+              <section>
+                <h5>Example</h5>
+                <!-- <div class="hljs"> --><pre><code class="hljs language-json">{
+  <span class="hljs-attr">&quot;lastId&quot;</span>: <span class="hljs-string">&quot;string (uuid)&quot;</span>
+}
+</code></pre>
+                <!-- </div> -->
+              </section>
+            </div>
+          </div>
+        </div>
         <div id="definition-Market" class="definition panel" data-traverse-target="definition-Market">
           <h2 class="panel-title">
             <a name="/definitions/Market"></a>Market </h2>
@@ -9751,7 +11405,7 @@
                     <span class="json-property-range" title="Value limits"></span>
                   </dt>
                   <dd>
-                    <p>list of prohibited regions. empty if its not restricted.</p>
+                    <p>list of prohibited regions. empty if its not restricted. NOTE: Currently this field only indicates if the market is prohibited in the US. We recommend using the account/permissions/markets endpoint instead.</p>
                   </dd>
                   <dt class="json-inner-schema">
                     <section class="json-schema-array-items">
@@ -9770,6 +11424,21 @@
                   </dt>
                   <dd>
                     <p>list of associated terms of service.</p>
+                  </dd>
+                  <dt class="json-inner-schema">
+                    <section class="json-schema-array-items">
+                      <span class="json-property-type">string</span>
+                      <span class="json-property-range" title="Value limits"></span>
+                      <div class="json-inner-schema"> </div>
+                    </section>
+                  </dt>
+                  <dt data-property-name="tags" class="has-description">
+                    <span class="json-property-name">tags:</span>
+                    <span class="json-property-type">string[]</span>
+                    <span class="json-property-range" title="Value limits"></span>
+                  </dt>
+                  <dd>
+                    <p>metadata tags for this market</p>
                   </dd>
                   <dt class="json-inner-schema">
                     <section class="json-schema-array-items">
@@ -9797,6 +11466,9 @@
     <span class="hljs-string">&quot;string&quot;</span>
   ],
   <span class="hljs-attr">&quot;associatedTermsOfService&quot;</span>: [
+    <span class="hljs-string">&quot;string&quot;</span>
+  ],
+  <span class="hljs-attr">&quot;tags&quot;</span>: [
     <span class="hljs-string">&quot;string&quot;</span>
   ]
 }
@@ -9867,7 +11539,6 @@
                     <span class="json-property-type">number</span>
                     <span class="json-property-format">(double)</span>
                     <span class="json-property-range" title="Value limits"></span>
-                    <span class="json-property-required"></span>
                   </dt>
                   <dd>
                     <p>percentage change of the exchange rate over the last 24 hours (positive or negative)</p>
@@ -10231,7 +11902,6 @@
                     <span class="json-property-type">number</span>
                     <span class="json-property-format">(double)</span>
                     <span class="json-property-range" title="Value limits"></span>
-                    <span class="json-property-required"></span>
                   </dt>
                   <dd>
                     <p>volume</p>
@@ -10241,7 +11911,6 @@
                     <span class="json-property-type">number</span>
                     <span class="json-property-format">(double)</span>
                     <span class="json-property-range" title="Value limits"></span>
-                    <span class="json-property-required"></span>
                   </dt>
                   <dd>
                     <p>quoute volume</p>
@@ -10356,7 +12025,8 @@
                       <span class="json-property-enum-item">IMMEDIATE_OR_CANCEL</span>,
                       <span class="json-property-enum-item">FILL_OR_KILL</span>,
                       <span class="json-property-enum-item">POST_ONLY_GOOD_TIL_CANCELLED</span>,
-                      <span class="json-property-enum-item">BUY_NOW</span>
+                      <span class="json-property-enum-item">BUY_NOW</span>,
+                      <span class="json-property-enum-item">INSTANT</span>
                     </span>
                     <span class="json-property-range" title="Value limits"></span>
                     <span class="json-property-required"></span>
@@ -10548,113 +12218,6 @@
       <span class="hljs-attr">&quot;id&quot;</span>: <span class="hljs-string">&quot;string (uuid)&quot;</span>
     }
   }
-}
-</code></pre>
-                <!-- </div> -->
-              </section>
-            </div>
-          </div>
-        </div>
-        <div id="definition-Execution" class="definition panel" data-traverse-target="definition-Execution">
-          <h2 class="panel-title">
-            <a name="/definitions/Execution"></a>Execution </h2>
-          <div class="doc-row">
-            <div class="doc-copy">
-              <section class="json-schema-properties">
-                <dl>
-                  <dt data-property-name="id" class="has-description">
-                    <span class="json-property-name">id:</span>
-                    <span class="json-property-type">string</span>
-                    <span class="json-property-format">(uuid)</span>
-                    <span class="json-property-range" title="Value limits"></span>
-                    <span class="json-property-required"></span>
-                  </dt>
-                  <dd>
-                    <p>unique ID of this execution, assigned by the service</p>
-                  </dd>
-                  <dt data-property-name="marketSymbol" class="has-description">
-                    <span class="json-property-name">marketSymbol:</span>
-                    <span class="json-property-type">string</span>
-                    <span class="json-property-range" title="Value limits"></span>
-                    <span class="json-property-required"></span>
-                  </dt>
-                  <dd>
-                    <p>market symbol where this execution took place</p>
-                  </dd>
-                  <dt data-property-name="executedAt" class="has-description">
-                    <span class="json-property-name">executedAt:</span>
-                    <span class="json-property-type">string</span>
-                    <span class="json-property-format">(date-time)</span>
-                    <span class="json-property-range" title="Value limits"></span>
-                    <span class="json-property-required"></span>
-                  </dt>
-                  <dd>
-                    <p>time when the execution was processed</p>
-                  </dd>
-                  <dt data-property-name="quantity" class="has-description">
-                    <span class="json-property-name">quantity:</span>
-                    <span class="json-property-type">number</span>
-                    <span class="json-property-format">(double)</span>
-                    <span class="json-property-range" title="Value limits"></span>
-                    <span class="json-property-required"></span>
-                  </dt>
-                  <dd>
-                    <p>quantity traded during this execution</p>
-                  </dd>
-                  <dt data-property-name="rate" class="has-description">
-                    <span class="json-property-name">rate:</span>
-                    <span class="json-property-type">number</span>
-                    <span class="json-property-format">(double)</span>
-                    <span class="json-property-range" title="Value limits"></span>
-                    <span class="json-property-required"></span>
-                  </dt>
-                  <dd>
-                    <p>rate at which this trade was executed</p>
-                  </dd>
-                  <dt data-property-name="orderId" class="has-description">
-                    <span class="json-property-name">orderId:</span>
-                    <span class="json-property-type">string</span>
-                    <span class="json-property-format">(uuid)</span>
-                    <span class="json-property-range" title="Value limits"></span>
-                    <span class="json-property-required"></span>
-                  </dt>
-                  <dd>
-                    <p>order ID associated with this execution</p>
-                  </dd>
-                  <dt data-property-name="commission" class="has-description">
-                    <span class="json-property-name">commission:</span>
-                    <span class="json-property-type">number</span>
-                    <span class="json-property-format">(double)</span>
-                    <span class="json-property-range" title="Value limits"></span>
-                    <span class="json-property-required"></span>
-                  </dt>
-                  <dd>
-                    <p>commission charged for this execution</p>
-                  </dd>
-                  <dt data-property-name="isTaker" class="has-description">
-                    <span class="json-property-name">isTaker:</span>
-                    <span class="json-property-type">boolean</span>
-                    <span class="json-property-range" title="Value limits"></span>
-                    <span class="json-property-required"></span>
-                  </dt>
-                  <dd>
-                    <p>true if the order ID specified was the taker for this execution, otherwise false</p>
-                  </dd>
-                </dl>
-              </section>
-            </div>
-            <div class="doc-examples">
-              <section>
-                <h5>Example</h5>
-                <!-- <div class="hljs"> --><pre><code class="hljs language-json">{
-  <span class="hljs-attr">&quot;id&quot;</span>: <span class="hljs-string">&quot;string (uuid)&quot;</span>,
-  <span class="hljs-attr">&quot;marketSymbol&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
-  <span class="hljs-attr">&quot;executedAt&quot;</span>: <span class="hljs-string">&quot;string (date-time)&quot;</span>,
-  <span class="hljs-attr">&quot;quantity&quot;</span>: <span class="hljs-string">&quot;number (double)&quot;</span>,
-  <span class="hljs-attr">&quot;rate&quot;</span>: <span class="hljs-string">&quot;number (double)&quot;</span>,
-  <span class="hljs-attr">&quot;orderId&quot;</span>: <span class="hljs-string">&quot;string (uuid)&quot;</span>,
-  <span class="hljs-attr">&quot;commission&quot;</span>: <span class="hljs-string">&quot;number (double)&quot;</span>,
-  <span class="hljs-attr">&quot;isTaker&quot;</span>: <span class="hljs-string">&quot;boolean&quot;</span>
 }
 </code></pre>
                 <!-- </div> -->
@@ -11226,9 +12789,9 @@
             </div>
           </div>
         </div>
-        <div id="definition-WhiteListAddress" class="definition panel" data-traverse-target="definition-WhiteListAddress">
+        <div id="definition-AllowedAddress" class="definition panel" data-traverse-target="definition-AllowedAddress">
           <h2 class="panel-title">
-            <a name="/definitions/WhiteListAddress"></a>WhiteListAddress </h2>
+            <a name="/definitions/AllowedAddress"></a>AllowedAddress </h2>
           <div class="doc-row">
             <div class="doc-copy">
               <section class="json-schema-properties">
@@ -11240,7 +12803,7 @@
                     <span class="json-property-required"></span>
                   </dt>
                   <dd>
-                    <p>the unique ID of the currency for this withdrawal whitelist address</p>
+                    <p>the unique ID of the currency for this withdrawal allowed address</p>
                   </dd>
                   <dt data-property-name="createdAt" class="has-description">
                     <span class="json-property-name">createdAt:</span>
@@ -11250,7 +12813,7 @@
                     <span class="json-property-required"></span>
                   </dt>
                   <dd>
-                    <p>date and time this address was added to the whitelist</p>
+                    <p>date and time this address was added to the allowed list</p>
                   </dd>
                   <dt data-property-name="status" class="has-description">
                     <span class="json-property-name">status:</span>
