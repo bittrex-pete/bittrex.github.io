@@ -1377,7 +1377,7 @@
           {
             "name": "candleType",
             "in": "path",
-            "description": "type of candles (trades or midpoint). This portion of the url may be omitted if trade based candles are desired (e.g. /candes/{candleInterval}/recent will return trade based candles)",
+            "description": "type of candles (trades or midpoint). This portion of the url may be omitted if trade based candles are desired (e.g. /candles/{candleInterval}/recent will return trade based candles)",
             "required": false,
             "type": "string",
             "enum": [
@@ -1433,7 +1433,7 @@
           {
             "name": "candleType",
             "in": "path",
-            "description": "type of candles (trades or midpoint). This portion of the url may be omitted if trade based candles are desired (e.g. /candes/{candleInterval}/recent will return trade based candles)",
+            "description": "type of candles (trades or midpoint). This portion of the url may be omitted if trade based candles are desired (e.g. /candles/{candleInterval}/recent will return trade based candles)",
             "required": false,
             "type": "string",
             "enum": [
@@ -1509,7 +1509,7 @@
           {
             "name": "candleType",
             "in": "path",
-            "description": "type of candles (trades or midpoint). This portion of the url may be omitted if trade based candles are desired (e.g. /candes/{candleInterval}/historical/{year} will return trade based candles)",
+            "description": "type of candles (trades or midpoint). This portion of the url may be omitted if trade based candles are desired (e.g. /candles/{candleInterval}/historical/{year} will return trade based candles)",
             "required": false,
             "type": "string",
             "enum": [
@@ -3544,17 +3544,17 @@
         },
         "fillQuantity": {
           "format": "double",
-          "description": "fill quantity (always present, even when there is no fill)",
+          "description": "Quantity filled in base currency (e.g. BTC on the BTC/USD market)",
           "type": "number"
         },
         "commission": {
           "format": "double",
-          "description": "commission (always present, even when there is no fill)",
+          "description": "Commission paid on the order in quote currency (e.g. USD on the BTC/USD market)",
           "type": "number"
         },
         "proceeds": {
           "format": "double",
-          "description": "proceeds (always present, even when there is no fill)",
+          "description": "Amount paid for buy orders or amount received for sell orders in quote currency (e.g. USD on the BTC/USD market). Average fill price is proceeds / quantityFilled. The total quote currency paid for a buy order is proceeds + commission. For a sell order the quote currency received is proceeds - commission",
           "type": "number"
         },
         "status": {
