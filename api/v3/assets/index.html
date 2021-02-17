@@ -7,8 +7,8 @@
       <nav id="nav" role="navigation">
         <h5>Topics</h5>
         <a href="#introduction">Introduction</a>
-        <a href="#topic-Change-Log">Change Log</a>
         <a href="#topic-Upcoming-Breaking-Changes">Upcoming Breaking Changes</a>
+        <a href="#topic-Change-Log">Change Log</a>
         <a href="#topic-Known-Issues">Known Issues</a>
         <section>
           <a href="#topic-REST-API-Overview">REST API Overview</a>
@@ -430,10 +430,26 @@
             </div>
           </div>
         </div>
+        <h1 id="topic-Upcoming-Breaking-Changes" data-traverse-target="topic-Upcoming-Breaking-Changes">Upcoming Breaking Changes</h1>
+        <div class="panel">
+          <div class="doc-row">
+            <div class="doc-copy">
+              <p>The marketSybol included in the execution socket updates is formatted incorrectly as Quote-Base instead of the Base-Quote format used in the rest of the API. This issue will be corrected. Websocket connections established after
+                <b>13:00 Pacific (21:00 UTC) on Thursday, Feb 18</b> will receive marketSymbols with the corrected format.</p>
+            </div>
+          </div>
+        </div>
         <h1 id="topic-Change-Log" data-traverse-target="topic-Change-Log">Change Log</h1>
         <div class="panel">
           <div class="doc-row">
             <div class="doc-copy">
+              <p>
+                <strong>02/16/2020</strong>
+              </p>
+              <ul>
+                <li>Updated known issues and upcoming breaking changes to reflect executions socket stream marketSymbol issue</li>
+                <li>Added more codes to the error code documentation</li>
+              </ul>
               <p>
                 <strong>12/02/2020</strong>
               </p>
@@ -527,19 +543,14 @@
             </div>
           </div>
         </div>
-        <h1 id="topic-Upcoming-Breaking-Changes" data-traverse-target="topic-Upcoming-Breaking-Changes">Upcoming Breaking Changes</h1>
-        <div class="panel">
-          <div class="doc-row">
-            <div class="doc-copy">
-              <p>There are no further breaking changes planned.</p>
-            </div>
-          </div>
-        </div>
         <h1 id="topic-Known-Issues" data-traverse-target="topic-Known-Issues">Known Issues</h1>
         <div class="panel">
           <div class="doc-row">
             <div class="doc-copy">
               <ul>
+                <li>
+                  <p>The marketSybol included in the execution socket updates is formatted incorrectly as Quote-Base instead of the Base-Quote format used in the rest of the API.</p>
+                </li>
                 <li>
                   <p>The trigger price shown on the website for trailing stop orders does not update automatically. The see the updated trigger price, refresh the page or query the api.</p>
                 </li>
@@ -961,6 +972,10 @@
                     <td>The value specified for clientWithdrawalId has already been used. The corresponding Bittrex id for the withdrawal will be included in the response.</td>
                   </tr>
                   <tr>
+                    <td>CRYPTO_ADDRESS_ALREADY_EXISTS</td>
+                    <td>A deposit address already exists for the currency which the user is attempting to create an address</td>
+                  </tr>
+                  <tr>
                     <td>CURRENCY_DOES_NOT_EXIST</td>
                     <td>The currency symbol provided does not correspond to a currency</td>
                   </tr>
@@ -974,83 +989,108 @@
                   </tr>
                   <tr>
                     <td>FILL_OR_KILL</td>
-                    <td>The order was submitted with the fill_or_kill time in force and could not be filled completely so it was cancelled</td</tr>
-                      <tr>
-                        <td>INSUFFICIENT_AWARDS</td>
-                        <td>The order was placed with useAwards: true but the user did not have sufficient balance of BTXCRD to cover commission</td>
-                      </tr>
-                      <tr>
-                        <td>INSUFFICIENT_FUNDS</td>
-                        <td>The user is trying to buy or sell more currency than they can afford or currently hold, respectively</td>
-                      </tr>
-                      <tr>
-                        <td>INVALID_NEXT_PAGE_TOKEN</td>
-                        <td>The specified value for nextPageToken doesn't correspond to an item in the list</td>
-                      </tr>
-                      <tr>
-                        <td>INVALID_PREVIOUS_PAGE_TOKEN</td>
-                        <td>The specified value for previousPageToken doesn't correspond to an item in the list</td>
-                      </tr>
-                      <tr>
-                        <td>INVALID_SIGNATURE</td>
-                        <td>The Api-Signature request header is missing or invalid</td>
-                      </tr>
-                      <tr>
-                        <td>MARKET_DOES_NOT_EXIST</td>
-                        <td>The market symbol provided does not correspond to a market</td>
-                      </tr>
-                      <tr>
-                        <td>MARKET_NAME_REVERSED</td>
-                        <td>Market symbols in v3 are in base-quote order whereas in v1 it was the reverse. This error occures when we think a market symbol was sent to v3 in quote-base order.</td>
-                      </tr>
-                      <tr>
-                        <td>MARKET_OFFLINE</td>
-                        <td>Te market is offline</td>
-                      </tr>
-                      <tr>
-                        <td>MAX_ORDERS_ALLOWED</td>
-                        <td>The user already has the maximum allowed open orders and cannot open another until one is closed</td>
-                      </tr>
-                      <tr>
-                        <td>MIN_TRADE_REQUIREMENT_NOT_MET</td>
-                        <td>The trade was smaller than the min trade size quantity for the market</td>
-                      </tr>
-                      <tr>
-                        <td>NOT_ALLOWED</td>
-                        <td>This account is not allowed to perform this action</td>
-                      </tr>
-                      <tr>
-                        <td>ORDER_NOT_OPEN</td>
-                        <td>Tried to cancel an order that was not open</td>
-                      </tr>
-                      <tr>
-                        <td>ORDER_TYPE_INVALID</td>
-                        <td>The order creation request is malformed in some way</td>
-                      </tr>
-                      <tr>
-                        <td>ORDERBOOK_DEPTH</td>
-                        <td>If allowed to execute, the order would have been executed at least in part at a price in excess of what is allowed by the price slippage limit on the market</td>
-                      </tr>
-                      <tr>
-                        <td>POST_ONLY</td>
-                        <td>The order was submitted as 'post only' but matched with an order already on the book and thus was cancelled</td>
-                      </tr>
-                      <tr>
-                        <td>REQUESTID_ALREADY_EXISTS</td>
-                        <td>The value specified for requestId has already been used. The corresponding Bittrx id for the request will be included in the response.</td>
-                      </tr>
-                      <tr>
-                        <td>SELF_TRADE</td>
-                        <td>The order matched with an order on the book placed by the same user</td>
-                      </tr>
-                      <tr>
-                        <td>SUBACCOUNT_OF_SUBACCOUNT_NOT_ALLOWED</td>
-                        <td>Attempted to create a subaccout of a subaccount</td>
-                      </tr>
-                      <tr>
-                        <td>THROTTLED</td>
-                        <td>Too many requests have been made</td>
-                      </tr>
+                    <td>The order was submitted with the fill_or_kill time in force and could not be filled completely so it was cancelled</td>
+                  </tr>
+                  <tr>
+                    <td>INSUFFICIENT_AWARDS</td>
+                    <td>The order was placed with useAwards: true but the user did not have sufficient balance of BTXCRD to cover commission</td>
+                  </tr>
+                  <tr>
+                    <td>INSUFFICIENT_FUNDS</td>
+                    <td>The user is trying to buy or sell more currency than they can afford or currently hold, respectively</td>
+                  </tr>
+                  <tr>
+                    <td>INVALID_MARKET_ORDER</td>
+                    <td>A market order was requested in the order type, but other options selected which conflict with that (e.g. GOOD_TIL_CANCELLED time in force)</td>
+                  </tr>
+                  <tr>
+                    <td>INVALID_NEXT_PAGE_TOKEN</td>
+                    <td>The specified value for nextPageToken doesn't correspond to an item in the list</td>
+                  </tr>
+                  <tr>
+                    <td>INVALID_ORDER_TYPE</td>
+                    <td>The selected order type conflicts with other options specified on the order (e.g. setting a limit price for a market order)</td>
+                  </tr>
+                  <tr>
+                    <td>INVALID_PREVIOUS_PAGE_TOKEN</td>
+                    <td>The specified value for previousPageToken doesn't correspond to an item in the list</td>
+                  </tr>
+                  <tr>
+                    <td>INVALID_RESTRICTED_ACCOUNT</td>
+                    <td>The user is a Bittrex US user attempting an action on a Bittrex Global only currency or market</td>
+                  </tr>
+                  <tr>
+                    <td>INVALID_SIGNATURE</td>
+                    <td>The Api-Signature request header is missing or invalid</td>
+                  </tr>
+                  <tr>
+                    <td>MARKET_DOES_NOT_EXIST</td>
+                    <td>The market symbol provided does not correspond to a market</td>
+                  </tr>
+                  <tr>
+                    <td>MARKET_NAME_REVERSED</td>
+                    <td>Market symbols in v3 are in base-quote order whereas in v1 it was the reverse. This error occures when we think a market symbol was sent to v3 in quote-base order.</td>
+                  </tr>
+                  <tr>
+                    <td>MARKET_OFFLINE</td>
+                    <td>Te market is offline</td>
+                  </tr>
+                  <tr>
+                    <td>MAX_ORDERS_ALLOWED</td>
+                    <td>The user already has the maximum allowed open orders and cannot open another until one is closed</td>
+                  </tr>
+                  <tr>
+                    <td>MIN_TRADE_REQUIREMENT_NOT_MET</td>
+                    <td>The trade was smaller than the min trade size quantity for the market</td>
+                  </tr>
+                  <tr>
+                    <td>NOT_ALLOWED</td>
+                    <td>This account is not allowed to perform this action</td>
+                  </tr>
+                  <tr>
+                    <td>ORDER_ERROR_CONTACT_SUPPORT</td>
+                    <td>Operation could not be completed due to an internal error</td>
+                  </tr>
+                  <tr>
+                    <td>ORDER_NOT_OPEN</td>
+                    <td>Tried to cancel an order that was not open</td>
+                  </tr>
+                  <tr>
+                    <td>ORDER_TYPE_INVALID</td>
+                    <td>The order creation request is malformed in some way</td>
+                  </tr>
+                  <tr>
+                    <td>ORDERBOOK_DEPTH</td>
+                    <td>If allowed to execute, the order would have been executed at least in part at a price in excess of what is allowed by the price slippage limit on the market</td>
+                  </tr>
+                  <tr>
+                    <td>POST_ONLY</td>
+                    <td>The order was submitted as 'post only' but matched with an order already on the book and thus was cancelled</td>
+                  </tr>
+                  <tr>
+                    <td>RATE_PRECISION_NOT_ALLOWED</td>
+                    <td>The limit price specified includes more precision than is allowed on this market</td>
+                  </tr>
+                  <tr>
+                    <td>REQUESTID_ALREADY_EXISTS</td>
+                    <td>The value specified for requestId has already been used. The corresponding Bittrx id for the request will be included in the response.</td>
+                  </tr>
+                  <tr>
+                    <td>SELF_TRADE</td>
+                    <td>The order matched with an order on the book placed by the same user</td>
+                  </tr>
+                  <tr>
+                    <td>SUBACCOUNT_OF_SUBACCOUNT_NOT_ALLOWED</td>
+                    <td>Attempted to create a subaccout of a subaccount</td>
+                  </tr>
+                  <tr>
+                    <td>THROTTLED</td>
+                    <td>Too many requests have been made</td>
+                  </tr>
+                  <tr>
+                    <td>WHITELIST_VIOLATION_WITHDRAWAL_ADDRESS</td>
+                    <td>Attempting to withdrawal to an address that is either not on the users list of allowed withdrawal address or which is still within the wait period</td>
+                  </tr>
                 </tbody>
               </table>
             </div>
@@ -5249,7 +5289,7 @@
                     <div class="prop-subtitle"> in path </div>
                   </div>
                   <div class="prop-value">
-                    <p>type of candles (trades or midpoint). This portion of the url may be omitted if trade based candles are desired (e.g. /candes/{candleInterval}/recent will return trade based candles)</p>
+                    <p>type of candles (trades or midpoint). This portion of the url may be omitted if trade based candles are desired (e.g. /candles/{candleInterval}/recent will return trade based candles)</p>
                   </div>
                 </div>
               </section>
@@ -5389,7 +5429,7 @@
                     <div class="prop-subtitle"> in path </div>
                   </div>
                   <div class="prop-value">
-                    <p>type of candles (trades or midpoint). This portion of the url may be omitted if trade based candles are desired (e.g. /candes/{candleInterval}/recent will return trade based candles)</p>
+                    <p>type of candles (trades or midpoint). This portion of the url may be omitted if trade based candles are desired (e.g. /candles/{candleInterval}/recent will return trade based candles)</p>
                   </div>
                 </div>
               </section>
@@ -5540,7 +5580,7 @@
                     <div class="prop-subtitle"> in path </div>
                   </div>
                   <div class="prop-value">
-                    <p>type of candles (trades or midpoint). This portion of the url may be omitted if trade based candles are desired (e.g. /candes/{candleInterval}/historical/{year} will return trade based candles)</p>
+                    <p>type of candles (trades or midpoint). This portion of the url may be omitted if trade based candles are desired (e.g. /candles/{candleInterval}/historical/{year} will return trade based candles)</p>
                   </div>
                 </div>
               </section>
@@ -12051,7 +12091,7 @@
                     <span class="json-property-required"></span>
                   </dt>
                   <dd>
-                    <p>fill quantity (always present, even when there is no fill)</p>
+                    <p>Quantity filled in base currency (e.g. BTC on the BTC/USD market)</p>
                   </dd>
                   <dt data-property-name="commission" class="has-description">
                     <span class="json-property-name">commission:</span>
@@ -12061,7 +12101,7 @@
                     <span class="json-property-required"></span>
                   </dt>
                   <dd>
-                    <p>commission (always present, even when there is no fill)</p>
+                    <p>Commission paid on the order in quote currency (e.g. USD on the BTC/USD market)</p>
                   </dd>
                   <dt data-property-name="proceeds" class="has-description">
                     <span class="json-property-name">proceeds:</span>
@@ -12071,7 +12111,7 @@
                     <span class="json-property-required"></span>
                   </dt>
                   <dd>
-                    <p>proceeds (always present, even when there is no fill)</p>
+                    <p>Amount paid for buy orders or amount received for sell orders in quote currency (e.g. USD on the BTC/USD market). Average fill price is proceeds / quantityFilled. The total quote currency paid for a buy order is proceeds + commission. For a sell order the quote currency received is proceeds - commission</p>
                   </dd>
                   <dt data-property-name="status" class="has-description">
                     <span class="json-property-name">status:</span>
