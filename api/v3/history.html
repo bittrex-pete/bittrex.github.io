@@ -1,0 +1,142 @@
+---
+layout: spectacle
+permalink: /history/v3
+directory: /api/v3/assets
+version: v3
+redirect_from:
+    - /history
+---
+<div id="spectacle">
+    <div id="page">
+        <div id="docs">
+            <article>
+                <h1 class="doc-title">Historical v3 API Changes</h1>
+                <div class="panel">
+                    <div class="doc-row">
+                        <div class="doc-copy">
+                            <p>
+                                This list includes changes prior to 10/1/20. Recent changes are listed <a href="../api/v3#topic-Change-Log">here</a>.
+                            </p>
+                            <p>
+                                <strong>09/23/2020</strong>
+                            </p>
+                            <ul>
+                                <li>
+                                    You now cancel all of your open orders or all of your open orders on a market with
+                                    <a href="../api/v3#operation--orders-open-delete">DELETE /orders/open</a>
+                                </li>
+                                <li>
+                                    Websocket stream for
+                                    <a href="../api/v3#method-Conditional-Order">conditional orders</a> is now available
+                                </li>
+                                <li>Withdrawal requests can now be made idempotent by specifying a clientWithdrawalId</li>
+                                <li>
+                                    Simple examples of authenticating and subscribing to the websocket in C#, Node.js, Python, and Java may be found in the
+                                    <a href="../api/v3#topic-Example-Socket-Clients">Examples</a> section
+                                </li>
+                                <li>Currency model now contains Bittrex&#39;s blockchain base address</li>
+                                <li>Currency and Market models now reference any additional required terms of service agreeements</li>
+                            </ul>
+                            <p>
+                                <strong>06/17/2020</strong>
+                            </p>
+                            <ul>
+                                <li>
+                                    <p>The v3 API has reached generally availability and is ready for production use!</p>
+                                </li>
+                                <li>
+                                    <p>
+                                        You can now get the list of executed trades related to your orders from
+                                        <a href="../api/v3#operation--orders--orderId--executions-get">GET /orders/{orderId}/executions</a>
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>End of life for the v1 api is planned for 9/30/2020</p>
+                                </li>
+                            </ul>
+                            <p>
+                                <strong>06/10/2020</strong>
+                            </p>
+                            <ul>
+                                <li>The baseVolume property was removed from MarketSummary and Candle responses. Use the quoteVolume property for quote volume or the volume property for base volume.</li>
+                            </ul>
+                            <p>
+                                <strong>05/27/2020</strong>
+                            </p>
+                            <ul>
+                                <li>Successful cancel withdrawal response will change from 204 with no content in the response body to a 200 with the cancelled withdrawal in the response body</li>
+                                <li>Historical candles endpoint will no longer allow you to specify more portions of the date parameters than are necessary for the selected candle interval. Specify only year for day candles. Specify only year and month for hour candles.</li>
+                                <li>GET /candles endpoint is deprecated and has been removed from the documentation. Use GET /candles/{interval}/recent instead. The response model is the same.</li>
+                            </ul>
+                            <p>
+                                <strong>05/15/2020</strong>
+                            </p>
+                            <ul>
+                                <li>v3 socket is now in public beta</li>
+                                <li>May now trigger ceiling orders from conditional orders</li>
+                                <li>Order object now includes the order&#39;s OCO partner (if applicable)</li>
+                                <li>May now get whitelisted withdrawal addresses from <code>/withdrawals/whitelistAddresses</code></li>
+                                <li>Balance object now has an updatedAt timestamp</li>
+                                <li>Markets and currencies now indicate if they are prohibited from use by US customers</li>
+                                <li>You can now get your accountId from the account endpoint</li>
+                                <li>Deposit object now includes whether a deposit source was blockchain, wire transfer, or credit card</li>
+                            </ul>
+                            <p>
+                                <strong>01/27/2020</strong>
+                            </p>
+                            <ul>
+                                <li>
+                                    <p>Conditional orders (e.g. stop loss) have been added to the V3 API Beta. See the new Placing Conditinal Orders section below for additional information.</p>
+                                </li>
+                                <li>
+                                    <p>Historical candles are now available in the API</p>
+                                </li>
+                                <li>
+                                    <p>The functionality of the existing candles endpoint has been duplicated into a candles/.../recent endpoint. The existing one will be retired in a future release. </p>
+                                </li>
+                            </ul>
+                            <p>
+                                <strong>08/08/2019</strong>
+                            </p>
+                            <ul>
+                                <li>
+                                    <p>You can now use the v3 API to retrieve the bid/ask/last for all markets at once by getting v3/markets/ticker instead of querying each market individually.</p>
+                                </li>
+                                <li>
+                                    <p>When getting currency information from v3/currencies the response will now include a URL for an image containing the currency's logo.</p>
+                                </li>
+                            </ul>
+                            <p>
+                                <strong>06/26/2019</strong>
+                            </p>
+                            <ul>
+                                <li>
+                                    <p>Ceiling Sell orders have been added to the V3 API Beta. This option allows you to instruct the system to sell enough of the base currency to increase your account balance of the quote currency by the specified amount.</p>
+                                </li>
+                            </ul>
+                            <p>
+                                <strong>04/19/2019</strong>
+                            </p>
+                            <p>We are thrilled to announce that the v3 Beta API is now available to the public! This brand new API adds the most-requested features in a single API. Some of the highlights include:</p>
+                            <ul>
+                                <li>Market orders to buy/sell a quantity of a currency at the best, currently available price</li>
+                                <li>Post-only orders which allow market makers to ensure their orders are making it to the order book instead of matching with a preexisting order</li>
+                                <li>Fill or Kill and Immediate or Cancel order types which force orders to be filled immediately or not at all</li>
+                                <li>Client-specified order IDs for easier tracking of orders and idempotency of order placement</li>
+                                <li>More details are available about the status of deposits and withdrawals</li>
+                                <li>Full history of your orders and withdrawals (not just most recent 20 or 200)</li>
+                                <li>Changed how market identifiers are structured to better align with foreign exchange trading standards (for example, the market formally known as BTC-ADA is now ADA-BTC in the v3 API)</li>
+                            </ul>
+                            <p>Reaching the Beta milestone represents our confidence in the quality and stability of our new API, but we're not done adding features. You can look forward to us adding even more to this API in upcoming releases.</p>
+                            <hr />
+                            <p>
+                                To see even older changes from before v3 entered public beta, please visit the
+                                <a href="https://bittrex.zendesk.com/hc/en-us/sections/200567324-Changelist">old change list</a>.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </div>
+</div>
